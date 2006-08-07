@@ -1,0 +1,226 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0107 
+i18n_type 1 
+i18n_include <libintl.h> 
+i18n_function gettext 
+header_name {.h} 
+code_name {.cxx}
+decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
+
+decl {//License GNU/GPL version 2} {} 
+
+decl {\#include <Fl/Fl_Preferences.H>} {} 
+
+decl {\#include <Fl/Fl_File_Chooser.H>} {} 
+
+decl {\#include "stygmorgan.h"} {public
+} 
+
+class rmgmpref {} {
+  Function {rmgmpref(RMGMO *rmgmo_)} {C
+  } {
+    code {char temp[128];
+static const char *pepe [] ={"stygmorgan"};
+
+int argc=1;
+char **argv= (char **) pepe;
+
+Fl::visual(FL_DOUBLE|FL_INDEX);
+Fl::visual(FL_RGB);
+rmgmo=rmgmo_;
+make_window();
+rmgmprefwin->position(x+20,y+20);
+bzero(temp,sizeof(temp));
+sprintf(temp,"%s %s - Preferences",PACKAGE,VERSION);
+rmgmprefwin->copy_label(temp);
+rmgmprefwin->icon((char *)p);
+rmgmprefwin->show(argc,argv);} {}
+  }
+  decl {RMGMO *rmgmo;} {}
+  Function {make_window()} {} {
+    Fl_Window rmgmprefwin {
+      callback {rmgmprefwin->hide();
+rmgmo->wpreferences=0;
+rmgmprefwin->clear();
+delete rmgmprefwin;}
+      xywh {1586 185 540 425} type Double color 7 hide
+    } {
+      Fl_Button {} {
+        label Cancel
+        callback {rmgmprefwin->do_callback();}
+        xywh {455 395 80 25}
+      }
+      Fl_Button {} {
+        label Ok
+        callback {GuardaPrefs();
+rmgmprefwin->do_callback();}
+        xywh {370 395 80 25}
+      }
+      Fl_Check_Button ASF {
+        label {Use asfxload to load soundfont at startup?}
+        callback {if ((int) o->value() ) ASFGroup->activate(); else ASFGroup->deactivate();} selected
+        xywh {5 215 245 25} down_box DOWN_BOX labelsize 11
+      }
+      Fl_Group ASFGroup {
+        xywh {5 230 530 50}
+      } {
+        Fl_File_Input SFPath {
+          label SoundFont
+          xywh {5 250 530 30} labelsize 11 align 5
+        }
+        Fl_Button {} {
+          label Browse
+          callback {char *filename;
+filename=fl_file_chooser("Browse:","(*.sf2)",NULL,0);
+if (filename==NULL) return;
+SFPath->value(filename);
+strcpy(rmgmo->ASFFilename,filename);}
+          xywh {470 230 65 20} labelsize 11
+        }
+      }
+      Fl_Check_Button AConnect {
+        label {auto connect Midi devices at startup?}
+        callback {if ((int) o->value()) MBros->activate(); else MBros->deactivate();}
+        xywh {5 10 270 25} down_box DOWN_BOX labelsize 11
+      }
+      Fl_Group MBros {
+        xywh {5 35 525 175} box DOWN_BOX color 7
+      } {
+        Fl_Browser BrIn {
+          label {Midi Input Devices}
+          xywh {15 60 250 145} type Hold labelsize 11 align 1 when 1
+        }
+        Fl_Browser BrOut {
+          label {Midi Output Devices }
+          xywh {270 60 255 145} type Hold labelsize 11 align 1 when 1
+        }
+      }
+      Fl_File_Input TempFilesDir {
+        label {Directory for temporal files}
+        xywh {5 305 530 30} labelsize 11 align 5
+      }
+      Fl_Button {} {
+        label Browse
+        callback {char *filename;
+filename=fl_dir_chooser("Browse:",rmgmo->TempDir,0);
+if (filename==NULL) return;
+TempFilesDir->value(filename);
+strcpy(rmgmo->TempDir,filename);}
+        xywh {470 280 65 20} labelsize 11
+      }
+      Fl_Check_Button DRespect {
+        label {Maintain Mutes when pattern changes}
+        xywh {5 350 270 25} down_box DOWN_BOX labelsize 11
+      }
+    }
+    code {int i;
+int val=0;
+char sffile[80];
+
+MiraClientes();
+
+Fl_Preferences stygmorgan (Fl_Preferences::USER, WEBSITE, PACKAGE);
+
+stygmorgan.get("TempDir",rmgmo->TempDir,"",126);
+TempFilesDir->value(rmgmo->TempDir);
+
+stygmorgan.get("AutoSF",val,0);
+ASF->value(val);
+ASF->do_callback();
+
+stygmorgan.get("SFFile",sffile,"",126);
+SFPath->value(sffile);
+
+stygmorgan.get("MutesPatternChange",rmgmo->Respect,0);
+DRespect->value(rmgmo->Respect);
+
+stygmorgan.get("AConnect",val,0);
+AConnect->value(val);
+AConnect->do_callback();
+
+stygmorgan.get("MidiInDevice",sffile,"",78);
+
+for(i=1;i<=BrIn->size();i++)
+ {
+    if (strcmp(BrIn->text(i),sffile)==0) 
+         { 
+           BrIn->select(i,1);
+           break;
+          } 
+  }         
+
+stygmorgan.get("MidiOutDevice",sffile,"",78);
+
+for(i=1;i<=BrOut->size();i++)
+ {
+    if (strcmp(BrOut->text(i),sffile)==0) 
+         { 
+           BrOut->select(i,1);
+           break;
+          } 
+  }} {}
+  }
+  Function {GuardaPrefs()} {} {
+    code {Fl_Preferences stygmorgan (Fl_Preferences::USER, WEBSITE, PACKAGE);
+
+stygmorgan.set("AConnect",(int)AConnect->value());
+if (BrIn->value() > 0 ) 
+{
+  stygmorgan.set("MidiInDevice",BrIn->text(BrIn->value()));
+  bzero(rmgmo->MID,sizeof(rmgmo->MID));
+  strcpy(rmgmo->MID,BrIn->text(BrIn->value()));
+  rmgmo->CambiaMidi=1;
+} 
+
+if (BrOut->value() > 0)
+{
+ stygmorgan.set("MidiOutDevice",BrOut->text(BrOut->value()));
+ bzero(rmgmo->MOD,sizeof(rmgmo->MOD));
+ strcpy(rmgmo->MOD,BrOut->text(BrOut->value()));
+ rmgmo->CambiaMidi=1; 
+}
+stygmorgan.set("AutoSF",(int)ASF->value());
+stygmorgan.set("SFFile",SFPath->value());
+
+if (((int)ASF->value()) && (SFPath->value() != NULL)) rmgmo->cargaASF();
+
+stygmorgan.set("TempDir",TempFilesDir->value());
+
+rmgmo->Respect=(int)DRespect->value();
+stygmorgan.set("MutesPatternChange",rmgmo->Respect);} {}
+  }
+  Function {MiraClientes()} {} {
+    code {FILE *fp;
+char temp[128];
+char temp1[128];
+char *masque;
+char *name;
+
+if ((fp = fopen ("/proc/asound/seq/clients", "r")) != NULL)
+  {
+    bzero (temp, sizeof (temp));
+
+      while (fgets (temp, sizeof temp, fp) != NULL)
+           {
+             
+            if (strstr(temp,"Port") != NULL)
+             
+           {  
+             
+             strcpy(temp1,temp);
+             strtok(temp1,"\\"");
+             name=strtok(NULL,"\\"");
+             masque=strtok(NULL,")");
+             
+             
+             
+             if ((masque[3]=='W' ) && (strstr(name,"stygmorgan IN")==0)) BrOut->add(name);
+             if ((masque[2]=='R' ) && (strstr(name,"stygmorgan OUT")==0)) BrIn->add(name);
+             
+            } 
+           } 
+   }
+   
+   fclose(fp);} {}
+  }
+} 
