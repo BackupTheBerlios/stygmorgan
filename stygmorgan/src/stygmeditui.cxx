@@ -21,12 +21,13 @@ for (i=0; i<=5;i++)
 {
  sizes[i]=colsizes[i]* ( W-20) / 725;
  } 
+
 sizes[6]=0;  
    
    
 
   
-init_sizes();  
+//init_sizes();  
 
 Fl_Browser::column_widths((const int*) sizes);
 
@@ -393,8 +394,6 @@ stygmorgan.get("rmgmeditwinH",h1,535);
 
 rmgmeditwin->icon((char *)p);
 
-rmgmeditwin->show(argc,argv);
-
 sNote->value(1);
 sControl->value(1);
 sProgram->value(1);
@@ -410,12 +409,15 @@ chsel=0;
 SelCh->menu(choices);
 SelCh->value(0);
 
-ReadPattern();
-
 rmgmo->Pendientes=0;
 memset(rmgmo->PO, 0 ,sizeof rmgmo->PO);
 
+
+rmgmeditwin->show(argc,argv);
+
 rmgmeditwin->resize(x1,y1,w1,h1);
+
+ReadPattern();
 }
 
 Fl_Double_Window* rmgmedit::make_window() {
@@ -737,7 +739,7 @@ EditBro->add(temp);
  
 }
 
-EditBro->size(EditBro->w(),EditBro->h());
+EditBro->redraw();
 }
 
 void rmgmedit::type_cb_i(Fl_Widget* o,void* v) {

@@ -24,7 +24,8 @@ class ElBro {: {public Fl_Browser}
 } {
   Function {ElBro(int X, int Y, int W, int H) : Fl_Browser(X,Y,W,H)} {open
   } {}
-  Function {resize(int X, int Y,int W, int H)} {} {
+  Function {resize(int X, int Y,int W, int H)} {open
+  } {
     code {int i;
 int sizes[512];
 static const int colsizes[]= {60,100,32,110,160,160,0};
@@ -36,12 +37,13 @@ for (i=0; i<=5;i++)
 {
  sizes[i]=colsizes[i]* ( W-20) / 725;
  } 
+
 sizes[6]=0;  
    
    
 
   
-init_sizes();  
+//init_sizes();  
 
 Fl_Browser::column_widths((const int*) sizes);
 
@@ -58,8 +60,9 @@ Function {type_cb(Fl_Widget* o,void* v)} {} {
   code {((rmgmedit*)(o->parent()->user_data()))->type_cb_i(o,v);} {}
 } 
 
-class rmgmedit {} {
-  Function {rmgmedit(RMGMO *rmgmo_)} {C
+class rmgmedit {open
+} {
+  Function {rmgmedit(RMGMO *rmgmo_)} {open C
   } {
     code {char temp[80];
 int x1,y1,w1,h1;
@@ -84,8 +87,6 @@ stygmorgan.get("rmgmeditwinH",h1,535);
 
 rmgmeditwin->icon((char *)p);
 
-rmgmeditwin->show(argc,argv);
-
 sNote->value(1);
 sControl->value(1);
 sProgram->value(1);
@@ -101,12 +102,16 @@ chsel=0;
 SelCh->menu(choices);
 SelCh->value(0);
 
-ReadPattern();
-
 rmgmo->Pendientes=0;
 memset(rmgmo->PO, 0 ,sizeof rmgmo->PO);
 
-rmgmeditwin->resize(x1,y1,w1,h1);} {}
+
+rmgmeditwin->show(argc,argv);
+
+rmgmeditwin->resize(x1,y1,w1,h1);
+
+ReadPattern();} {selected
+    }
   }
   decl {RMGMO *rmgmo;} {}
   Function {make_window()} {} {
@@ -200,7 +205,7 @@ ReadPattern();}
             label Help
             callback {rmgmo->ventana=7;
 EditBro->redraw();
-ReadPattern();} selected
+ReadPattern();}
             xywh {0 0 100 20} shortcut 0xffbe divider
           }
           MenuItem {} {
@@ -485,7 +490,7 @@ EditBro->add(temp);
  
 }
 
-EditBro->size(EditBro->w(),EditBro->h());} {}
+EditBro->redraw();} {}
   }
   Function {type_cb_i(Fl_Widget* o,void* v)} {} {
     code {int i=0;
