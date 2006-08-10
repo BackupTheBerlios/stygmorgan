@@ -1,10 +1,11 @@
-stygmppui.o stygmppui.o: stygmppui.cxx stygmppui.h /usr/include/FL/Fl.H \
-  /usr/include/FL/Enumerations.H /usr/include/FL/Fl_Export.H stygmorgan.h \
-  /usr/include/alsa/asoundlib.h /usr/include/unistd.h \
+stygmppui.o stygmppui.o: stygmppui.cxx /usr/include/libintl.h \
   /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
-  /usr/include/gnu/stubs-32.h /usr/include/bits/posix_opt.h \
-  /usr/include/bits/environments.h /usr/include/bits/types.h \
+  /usr/include/gnu/stubs-32.h stygmppui.h /usr/include/FL/Fl.H \
+  /usr/include/FL/Enumerations.H /usr/include/FL/Fl_Export.H stygmorgan.h \
+  /usr/include/alsa/asoundlib.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/types.h \
   /usr/lib/gcc/i486-linux-gnu/4.1.2/include/stddef.h \
   /usr/include/bits/typesizes.h /usr/include/bits/confname.h \
   /usr/include/getopt.h /usr/include/stdio.h /usr/include/libio.h \
@@ -45,6 +46,18 @@ stygmppui.o stygmppui.o: stygmppui.cxx stygmppui.h /usr/include/FL/Fl.H \
   /usr/include/FL/Fl_Box.H /usr/include/Fl/Fl_Check_Button.H \
   /usr/include/Fl/Fl_Light_Button.H /usr/include/Fl/Fl_Button.H
 
+/usr/include/libintl.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-32.h:
+
 stygmppui.h:
 
 /usr/include/FL/Fl.H:
@@ -58,16 +71,6 @@ stygmorgan.h:
 /usr/include/alsa/asoundlib.h:
 
 /usr/include/unistd.h:
-
-/usr/include/features.h:
-
-/usr/include/sys/cdefs.h:
-
-/usr/include/bits/wordsize.h:
-
-/usr/include/gnu/stubs.h:
-
-/usr/include/gnu/stubs-32.h:
 
 /usr/include/bits/posix_opt.h:
 

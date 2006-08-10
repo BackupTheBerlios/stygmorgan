@@ -1,5 +1,8 @@
 # data file for the Fltk User Interface Designer (fluid)
 version 1.0107 
+i18n_type 1 
+i18n_include <libintl.h> 
+i18n_function gettext 
 header_name {.h} 
 code_name {.cxx}
 decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
@@ -12,7 +15,7 @@ decl {\#include "stygmorgan.h"} {public
 decl {\#include <Fl/Fl_Check_Button.H>} {} 
 
 class rmgmpp {} {
-  Function {rmgmpp(RMGMO *rmgmo_)} {open C
+  Function {rmgmpp(RMGMO *rmgmo_)} {C
   } {
     code {char temp[128];
 static const char *pepe [] ={"stygmorgan"};
@@ -28,8 +31,7 @@ bzero(temp,sizeof(temp));
 sprintf(temp, "%s %s - %s - %s - Pattern Parameters",PACKAGE,VERSION,rmgmo->nStyle.Name,rmgmo->nStyle.Pattern[rmgmo->Variacion].Name);
 rmgmppwin->label(temp);
 rmgmppwin->icon((char *)p);
-rmgmppwin->show(argc,argv);} {selected
-    }
+rmgmppwin->show(argc,argv);} {}
   }
   decl {RMGMO *rmgmo;} {}
   Function {make_window()} {} {
@@ -55,7 +57,8 @@ rmgmppwin->do_callback();}
       }
       Fl_Choice PatChoice {
         label {Original Channel/Track}
-        callback {ASeCh((int)o->value());} open
+        callback {calcula();
+ASeCh((int)o->value());} open
         xywh {10 25 150 25} down_box BORDER_BOX labelsize 11 align 5
       } {}
       Fl_Counter DChannel {
@@ -144,7 +147,9 @@ if ((j==4) && (i==1)) break;
 }
 
 }
+rmgmppwin->end();
 
+rmgmo->ulase=0;
 ASeCh(0);} {}
   }
   Function {ASeCh(int tr)} {} {
@@ -152,6 +157,7 @@ ASeCh(0);} {}
 unsigned long lolo=0;
 Fl_Check_Button *pepe;
 
+rmgmo->ulase=tr;
 DChannel->value(rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[tr].Canal+1);
 ChordRoot->value(rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[tr].ChRoot);
 ChordType->value(rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[tr].ChType);
@@ -162,13 +168,14 @@ RTR->value(rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[tr].RTR);
 
 for(i=0; i<33; i++)
 {
-
+lolo=1;
 if (i==0) lolo = 1; else 
 for (j=1; j<=i; j++) lolo *=2;
 pepe = (Fl_Check_Button*) rmgmppwin->child(11+i);
 if ( (rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[tr].ChM & lolo) == lolo) pepe->value(1); else pepe->value(0); 
    
-}} {}
+}} {selected
+    }
   }
   Function {calcula()} {} {
     code {int i,j;
@@ -179,15 +186,15 @@ Fl_Check_Button *pepe;
 for(i=0; i<33; i++)
 {
 
-if (i==0) lolo = 1; else 
-for (j=1; j<=i; j++) lolo *=2;
+lolo=1;
+if (i==0) lolo = 1; else for (j=1; j<=i; j++) lolo *=2;
 
 pepe = (Fl_Check_Button*) rmgmppwin->child(11+i);
 
-if ((int) pepe->value() == 1) tito +=lolo;
+if ((int) pepe->value() == 1) tito=tito+lolo;
 
 }
 
-rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[(int)PatChoice->value()].ChM=tito;} {}
+rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[rmgmo->ulase].ChM=tito;} {}
   }
 } 

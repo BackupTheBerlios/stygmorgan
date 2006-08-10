@@ -38,6 +38,7 @@ RMGMO::RMGMO ()
 {
   
   //inicio de variables
+  ulase=0;
   wmore=0;
   tapaga=0;
   osemi=0;

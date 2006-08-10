@@ -219,6 +219,7 @@ public:
    int leer_bytes(FILE *fp, int n);
    unsigned long leer_delta(FILE *fp);
 
+  int ulase;
   int wmore;
   int tapaga;
   int semi,osemi;
