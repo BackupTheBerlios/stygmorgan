@@ -10,7 +10,7 @@ doc_DATA= stygmorgan.html \
 	editevent1.png \
 	EvWin.png \
 	EdPatWin.png \
-	EdStyWin \
+	EdStyWin.png \
 	SeqWin.png \
 	SeqWin1.png \
 	TempoTrack.png

@@ -8,6 +8,3 @@ doc_DATA= LICENSE \
 	
 	
 	
-	
-	
-	

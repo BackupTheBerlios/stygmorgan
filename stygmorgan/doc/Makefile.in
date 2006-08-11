@@ -149,7 +149,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-SUBDIRS = html examples
+SUBDIRS = html examples DSPeffects
 doc_DATA = LICENSE \
 	AUTHORS \
 	DISCLAIMER \

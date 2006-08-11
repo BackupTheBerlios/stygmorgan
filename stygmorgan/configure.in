@@ -18,7 +18,7 @@ AC_PATH_PROG(FLTK_CONFIG, fltk-config, no)
 if test "$FLTK_CONFIG" = "no"; then
   AC_MSG_ERROR(fltk-config not found)
 fi
-AC_OUTPUT(Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile doc/DSPeffects/Makefile)
+AC_OUTPUT(Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile doc/DSPeffects/Makefile )
 
 
 

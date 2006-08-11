@@ -5573,11 +5573,11 @@ fi
 
 
 if test "$FLTK_CONFIG" = "no"; then
-  { { echo "$as_me:$LINENO: error: no fltk-config is found" >&5
-echo "$as_me: error: no fltk-config is found" >&2;}
+  { { echo "$as_me:$LINENO: error: fltk-config not found" >&5
+echo "$as_me: error: fltk-config not found" >&2;}
    { (exit 1); exit 1; }; }
 fi
-ac_config_files="$ac_config_files Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile doc/DSPeffects/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -6171,6 +6171,7 @@ do
     "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
     "doc/html/Makefile") CONFIG_FILES="$CONFIG_FILES doc/html/Makefile" ;;
     "doc/examples/Makefile") CONFIG_FILES="$CONFIG_FILES doc/examples/Makefile" ;;
+    "doc/DSPeffects/Makefile") CONFIG_FILES="$CONFIG_FILES doc/DSPeffects/Makefile" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
