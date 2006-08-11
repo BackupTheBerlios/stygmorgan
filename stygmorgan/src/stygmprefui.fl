@@ -124,17 +124,17 @@ strcpy(rmgmo->TempDir,filename);}
  DTextStart->deactivate();
  DTextAutoF->deactivate();
  }}
-        xywh {5 345 270 25} down_box DOWN_BOX labelsize 11
+        tooltip {Input form: F0 43 10 .... F7} xywh {5 345 270 25} down_box DOWN_BOX labelsize 11
       }
       Fl_Input DTextStart {
         label {SysEx for Start button }
-        callback {strcpy(rmgmo->TextSTART,o->value());} selected
-        xywh {5 385 465 25} labelsize 10 align 5
+        callback {strcpy(rmgmo->TextSTART,o->value());}
+        tooltip {Input form: F0 43 10 .... F7} xywh {5 385 465 25} labelsize 10 align 5
       }
       Fl_Input DTextAutoF {
         label {SysEx for Auto Fill-In button }
-        callback {strcpy(rmgmo->TextAUTOF,o->value());}
-        xywh {5 430 465 25} labelsize 10 align 5
+        callback {strcpy(rmgmo->TextAUTOF,o->value());} selected
+        tooltip {Input form: F0 43 10 .... F7} xywh {5 430 465 25} labelsize 10 align 5
       }
     }
     code {int i;

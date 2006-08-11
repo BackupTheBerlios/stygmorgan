@@ -180,16 +180,19 @@ Fl_Double_Window* rmgmpref::make_window() {
       o->labelsize(11);
     }
     { Fl_Check_Button* o = DUseSysEx = new Fl_Check_Button(5, 345, 270, 25, gettext("Use SysEx messages for Start/AutoF"));
+      o->tooltip(gettext("Input form: F0 43 10 .... F7"));
       o->down_box(FL_DOWN_BOX);
       o->labelsize(11);
       o->callback((Fl_Callback*)cb_DUseSysEx);
     }
     { Fl_Input* o = DTextStart = new Fl_Input(5, 385, 465, 25, gettext("SysEx for Start button "));
+      o->tooltip(gettext("Input form: F0 43 10 .... F7"));
       o->labelsize(10);
       o->callback((Fl_Callback*)cb_DTextStart);
       o->align(FL_ALIGN_TOP_LEFT);
     }
     { Fl_Input* o = DTextAutoF = new Fl_Input(5, 430, 465, 25, gettext("SysEx for Auto Fill-In button "));
+      o->tooltip(gettext("Input form: F0 43 10 .... F7"));
       o->labelsize(10);
       o->callback((Fl_Callback*)cb_DTextAutoF);
       o->align(FL_ALIGN_TOP_LEFT);

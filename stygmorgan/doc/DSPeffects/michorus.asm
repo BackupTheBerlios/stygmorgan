@@ -26,15 +26,15 @@ outr	equ in1
 
 	
 	
-CHspeed	  control  2e-05 , 0 , 1e-4 	; Controls frequency (radians)
-CHrelative control #.5, 0, #1
-CHdelayL   control  &70e-3  ,&1e-3 , &90e-3; twice (2*) average delay (sec)
-CHdelayR  control  &76e-3  ,&1e-3  ,&90e-3;
+CHspeed	  control  1e-05 , 0 , 1e-4 	; Controls frequency (radians)
+CHrelative control #.86, 0, #1
+CHdelayL   control  &15e-3  ,&1e-3 , &90e-3; twice (2*) average delay (sec)
+CHdelayR  control  &72e-3  ,&1e-3  ,&90e-3;
 CHwidth	  control  #0.99   ,0.1	 ,#0.99 ; width control 
 
 ;; sine generator storage spaces:	
 sinx  sta  0	
-cosx  sta  #0.5
+cosx  sta  #0.51
 			
 tmp  dyn 	
 tmp1 dyn
@@ -65,7 +65,7 @@ readab  tread  dly,0
 	
 ;;; calculate address:
         
-        macs  chtmp,C_2,C_256,CHrelative 
+        macs  chtmp,C_4,C_256,CHrelative 
 
 	macs  ready.a,write.a,CHdelayL,tmp
         macs  readyb.a,writeb.a,CHdelayR,tmp
@@ -76,7 +76,7 @@ readab  tread  dly,0
 	
 ;;; Write to the delay line:
 	
-	macs  write,C_0,in,C_2^29
+	macs  write,C_0,in,C_2^30
        	macs  writeb,C_0,in1,C_2^30
 		
 	
@@ -89,8 +89,8 @@ readab  tread  dly,0
 	interp tmp2,ready,tmp,reada ;interpolate in-between the two delay line readings
 	interp tmp3,readyb,tmp1,readab
 
-	macs  outl,tmp2,tmp2,C_2
-	macs  outr,tmp3,tmp2,C_2
+	acc3  outl,tmp2,tmp2,tmp2
+	acc3  outr,tmp3,tmp3,tmp3
 
 	
 	end
