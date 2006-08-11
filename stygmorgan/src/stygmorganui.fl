@@ -23,9 +23,11 @@ decl {\#include <FL/Fl_File_Chooser.H>} {public
 decl {\#include "stygmorgan.h"} {public
 } 
 
-class stygmorgan {} {
+class stygmorgan {open
+} {
   decl {RMGMO *rmgmo;} {}
-  Function {make_window()} {} {
+  Function {make_window()} {open
+  } {
     Fl_Window rmgmorganwin {
       callback {GuardaPref();
 Pexitprogram=1;
@@ -968,7 +970,7 @@ if ((int)o->value()) PonSolo(nc); else QuitaSolo();}
           label {+}
           callback {int nc=15;
 if (rmgmo->wmore) o->value(0); else
-MoreParams(nc);} selected
+MoreParams(nc);}
           xywh {976 395 25 15} type Toggle box PLASTIC_THIN_UP_BOX color 7 selection_color 3 labelsize 8 align 80
         }
         Fl_Counter P15 {
@@ -2784,7 +2786,22 @@ CVari(0,rmgmo->Variacion);} {}
    if  (rmgmo->tapaga==1) 
    { rmgmo->tapaga=0;
      FunciLeds(1);
-   }} {}
+   }
+   
+   if (rmgmo->pbStart)
+   {
+     rmgmo->pbStart=0;
+     if (STST->value()) STST->value(0); else STST->value(1);
+     STST->do_callback();
+   }
+   
+    if (rmgmo->pbAutoF)
+   {
+     rmgmo->pbAutoF=0;
+     if (AutoFill->value()) AutoFill->value(0); else AutoFill->value(1);
+     AutoFill->do_callback();
+   }} {selected
+    }
   }
   Function {MoreSolo()} {} {
     code {ActuaOnOff();

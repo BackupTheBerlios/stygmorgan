@@ -589,3 +589,68 @@ return(i);
  
 };
 
+
+void
+RMGMO::ConvierteHexString()
+{
+
+int i,j;
+unsigned int k;
+char temp[4];
+char temp1[4];
+
+
+if (TextSTART != NULL)
+{
+
+bzero(START,sizeof(START));
+j=0;
+
+for (i=0; i<(int)strlen(TextSTART); i=i+3)
+{
+ 
+  bzero(temp, sizeof(temp));
+  bzero(temp1,sizeof(temp1));  
+
+  temp[0]=TextSTART[i]; temp[1]=TextSTART[i+1]; temp[2]=TextSTART[i+2];
+  
+  sscanf(temp,"%x", &k);
+  START[j]=k;
+  j++;
+}
+}
+
+if (TextAUTOF != NULL)
+{
+
+bzero(AUTOF,sizeof(AUTOF));
+j=0;
+
+for (i=0; i<(int)strlen(TextAUTOF); i=i+3)
+{
+ 
+  bzero(temp, sizeof(temp));
+  bzero(temp1,sizeof(temp1));  
+
+  temp[0]=TextAUTOF[i]; temp[1]=TextAUTOF[i+1]; temp[2]=TextAUTOF[i+2];
+  
+  sscanf(temp,"%x", &k);
+  AUTOF[j]=k;
+  j++;
+}
+}
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+

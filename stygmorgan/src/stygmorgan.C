@@ -38,6 +38,9 @@ RMGMO::RMGMO ()
 {
   
   //inicio de variables
+  usesysex=0;
+  pbStart=0;
+  pbAutoF=0;
   ulase=0;
   wmore=0;
   tapaga=0;
@@ -420,9 +423,14 @@ stygmorgan.get("TempDir",TempDir,"",126);
   readsounds(SoundsFilename);
   readregistrations(RegisFilename);
 
+stygmorgan.get("UseSysEX",usesysex,0);
 
-
-
+if (usesysex)
+{
+stygmorgan.get("ButStart",TextSTART,"",126);
+stygmorgan.get("ButAutoF",TextAUTOF,"",126);
+ConvierteHexString();
+}
 
 stygmorgan.get("MutesPatternChange", Respect,0);
 

@@ -98,6 +98,7 @@ public:
 
    RMGMO();
   ~RMGMO();
+   void ConvierteHexString();
     int BuscaPosTempo(int Compas, int Negra);
    void calctempo(int NewTempo);
    void PonerTempoMidiFile();
@@ -219,6 +220,14 @@ public:
    int leer_bytes(FILE *fp, int n);
    unsigned long leer_delta(FILE *fp);
 
+  
+unsigned char START[64];
+char TextSTART[128];
+unsigned char AUTOF[64];
+char TextAUTOF[128];
+  int usesysex;
+  int pbStart;
+  int pbAutoF;
   int ulase;
   int wmore;
   int tapaga;

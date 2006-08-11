@@ -68,6 +68,36 @@ void rmgmpref::cb_Browse1(Fl_Button* o, void* v) {
   ((rmgmpref*)(o->parent()->user_data()))->cb_Browse1_i(o,v);
 }
 
+void rmgmpref::cb_DUseSysEx_i(Fl_Check_Button* o, void*) {
+  if((int)o->value())
+{
+ DTextStart->activate();
+ DTextAutoF->activate();
+ }
+ else
+{  
+ DTextStart->deactivate();
+ DTextAutoF->deactivate();
+ };
+}
+void rmgmpref::cb_DUseSysEx(Fl_Check_Button* o, void* v) {
+  ((rmgmpref*)(o->parent()->user_data()))->cb_DUseSysEx_i(o,v);
+}
+
+void rmgmpref::cb_DTextStart_i(Fl_Input* o, void*) {
+  strcpy(rmgmo->TextSTART,o->value());
+}
+void rmgmpref::cb_DTextStart(Fl_Input* o, void* v) {
+  ((rmgmpref*)(o->parent()->user_data()))->cb_DTextStart_i(o,v);
+}
+
+void rmgmpref::cb_DTextAutoF_i(Fl_Input* o, void*) {
+  strcpy(rmgmo->TextAUTOF,o->value());
+}
+void rmgmpref::cb_DTextAutoF(Fl_Input* o, void* v) {
+  ((rmgmpref*)(o->parent()->user_data()))->cb_DTextAutoF_i(o,v);
+}
+
 rmgmpref::rmgmpref(RMGMO *rmgmo_) {
   char temp[128];
 static const char *pepe [] ={"stygmorgan"};
@@ -89,14 +119,14 @@ rmgmprefwin->show(argc,argv);
 
 Fl_Double_Window* rmgmpref::make_window() {
   Fl_Double_Window* w;
-  { Fl_Double_Window* o = rmgmprefwin = new Fl_Double_Window(540, 425);
+  { Fl_Double_Window* o = rmgmprefwin = new Fl_Double_Window(540, 505);
     w = o;
     o->color(FL_BACKGROUND2_COLOR);
     o->callback((Fl_Callback*)cb_rmgmprefwin, (void*)(this));
-    { Fl_Button* o = new Fl_Button(455, 395, 80, 25, gettext("Cancel"));
+    { Fl_Button* o = new Fl_Button(455, 475, 80, 25, gettext("Cancel"));
       o->callback((Fl_Callback*)cb_Cancel);
     }
-    { Fl_Button* o = new Fl_Button(370, 395, 80, 25, gettext("Ok"));
+    { Fl_Button* o = new Fl_Button(370, 475, 80, 25, gettext("Ok"));
       o->callback((Fl_Callback*)cb_Ok);
     }
     { Fl_Check_Button* o = ASF = new Fl_Check_Button(5, 215, 245, 25, gettext("Use asfxload to load soundfont at startup?"));
@@ -145,9 +175,24 @@ Fl_Double_Window* rmgmpref::make_window() {
       o->labelsize(11);
       o->callback((Fl_Callback*)cb_Browse1);
     }
-    { Fl_Check_Button* o = DRespect = new Fl_Check_Button(5, 350, 270, 25, gettext("Maintain Mutes when pattern changes"));
+    { Fl_Check_Button* o = DRespect = new Fl_Check_Button(5, 470, 270, 25, gettext("Maintain Mutes when pattern changes"));
       o->down_box(FL_DOWN_BOX);
       o->labelsize(11);
+    }
+    { Fl_Check_Button* o = DUseSysEx = new Fl_Check_Button(5, 345, 270, 25, gettext("Use SysEx messages for Start/AutoF"));
+      o->down_box(FL_DOWN_BOX);
+      o->labelsize(11);
+      o->callback((Fl_Callback*)cb_DUseSysEx);
+    }
+    { Fl_Input* o = DTextStart = new Fl_Input(5, 385, 465, 25, gettext("SysEx for Start button "));
+      o->labelsize(10);
+      o->callback((Fl_Callback*)cb_DTextStart);
+      o->align(FL_ALIGN_TOP_LEFT);
+    }
+    { Fl_Input* o = DTextAutoF = new Fl_Input(5, 430, 465, 25, gettext("SysEx for Auto Fill-In button "));
+      o->labelsize(10);
+      o->callback((Fl_Callback*)cb_DTextAutoF);
+      o->align(FL_ALIGN_TOP_LEFT);
     }
     o->end();
   }
@@ -197,6 +242,15 @@ for(i=1;i<=BrOut->size();i++)
            break;
           } 
   }
+  
+  
+stygmorgan.get("UseSysEX",rmgmo->usesysex,0);
+DUseSysEx->value(rmgmo->usesysex);
+DUseSysEx->do_callback();
+stygmorgan.get("ButStart",rmgmo->TextSTART,"",126);
+DTextStart->value(rmgmo->TextSTART);
+stygmorgan.get("ButAutoF",rmgmo->TextAUTOF,"",126);
+DTextAutoF->value(rmgmo->TextAUTOF);
   return w;
 }
 
@@ -228,6 +282,16 @@ stygmorgan.set("TempDir",TempFilesDir->value());
 
 rmgmo->Respect=(int)DRespect->value();
 stygmorgan.set("MutesPatternChange",rmgmo->Respect);
+
+rmgmo->usesysex=(int)DUseSysEx->value();
+stygmorgan.set("UseSysEX",rmgmo->usesysex);
+
+if (rmgmo->usesysex)
+{
+ stygmorgan.set("ButStart",rmgmo->TextSTART);
+ stygmorgan.set("ButAutoF",rmgmo->TextAUTOF);
+ rmgmo->ConvierteHexString();
+}
 }
 
 void rmgmpref::MiraClientes() {

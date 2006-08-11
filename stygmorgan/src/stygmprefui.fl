@@ -42,23 +42,23 @@ rmgmprefwin->show(argc,argv);} {}
       callback {rmgmprefwin->hide();
 rmgmo->wpreferences=0;
 rmgmprefwin->clear();
-delete rmgmprefwin;}
-      xywh {1586 185 540 425} type Double color 7 hide
+delete rmgmprefwin;} open
+      xywh {1549 112 540 505} type Double color 7 hide
     } {
       Fl_Button {} {
         label Cancel
         callback {rmgmprefwin->do_callback();}
-        xywh {455 395 80 25}
+        xywh {455 475 80 25}
       }
       Fl_Button {} {
         label Ok
         callback {GuardaPrefs();
 rmgmprefwin->do_callback();}
-        xywh {370 395 80 25}
+        xywh {370 475 80 25}
       }
       Fl_Check_Button ASF {
         label {Use asfxload to load soundfont at startup?}
-        callback {if ((int) o->value() ) ASFGroup->activate(); else ASFGroup->deactivate();} selected
+        callback {if ((int) o->value() ) ASFGroup->activate(); else ASFGroup->deactivate();}
         xywh {5 215 245 25} down_box DOWN_BOX labelsize 11
       }
       Fl_Group ASFGroup {
@@ -110,7 +110,31 @@ strcpy(rmgmo->TempDir,filename);}
       }
       Fl_Check_Button DRespect {
         label {Maintain Mutes when pattern changes}
-        xywh {5 350 270 25} down_box DOWN_BOX labelsize 11
+        xywh {5 470 270 25} down_box DOWN_BOX labelsize 11
+      }
+      Fl_Check_Button DUseSysEx {
+        label {Use SysEx messages for Start/AutoF}
+        callback {if((int)o->value())
+{
+ DTextStart->activate();
+ DTextAutoF->activate();
+ }
+ else
+{  
+ DTextStart->deactivate();
+ DTextAutoF->deactivate();
+ }}
+        xywh {5 345 270 25} down_box DOWN_BOX labelsize 11
+      }
+      Fl_Input DTextStart {
+        label {SysEx for Start button }
+        callback {strcpy(rmgmo->TextSTART,o->value());} selected
+        xywh {5 385 465 25} labelsize 10 align 5
+      }
+      Fl_Input DTextAutoF {
+        label {SysEx for Auto Fill-In button }
+        callback {strcpy(rmgmo->TextAUTOF,o->value());}
+        xywh {5 430 465 25} labelsize 10 align 5
       }
     }
     code {int i;
@@ -158,7 +182,16 @@ for(i=1;i<=BrOut->size();i++)
            BrOut->select(i,1);
            break;
           } 
-  }} {}
+  }
+  
+  
+stygmorgan.get("UseSysEX",rmgmo->usesysex,0);
+DUseSysEx->value(rmgmo->usesysex);
+DUseSysEx->do_callback();
+stygmorgan.get("ButStart",rmgmo->TextSTART,"",126);
+DTextStart->value(rmgmo->TextSTART);
+stygmorgan.get("ButAutoF",rmgmo->TextAUTOF,"",126);
+DTextAutoF->value(rmgmo->TextAUTOF);} {}
   }
   Function {GuardaPrefs()} {} {
     code {Fl_Preferences stygmorgan (Fl_Preferences::USER, WEBSITE, PACKAGE);
@@ -187,7 +220,17 @@ if (((int)ASF->value()) && (SFPath->value() != NULL)) rmgmo->cargaASF();
 stygmorgan.set("TempDir",TempFilesDir->value());
 
 rmgmo->Respect=(int)DRespect->value();
-stygmorgan.set("MutesPatternChange",rmgmo->Respect);} {}
+stygmorgan.set("MutesPatternChange",rmgmo->Respect);
+
+rmgmo->usesysex=(int)DUseSysEx->value();
+stygmorgan.set("UseSysEX",rmgmo->usesysex);
+
+if (rmgmo->usesysex)
+{
+ stygmorgan.set("ButStart",rmgmo->TextSTART);
+ stygmorgan.set("ButAutoF",rmgmo->TextAUTOF);
+ rmgmo->ConvierteHexString();
+}} {}
   }
   Function {MiraClientes()} {} {
     code {FILE *fp;

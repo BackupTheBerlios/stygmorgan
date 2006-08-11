@@ -10,6 +10,7 @@
 #include <FL/Fl_Group.H>
 #include <FL/Fl_File_Input.H>
 #include <FL/Fl_Browser.H>
+#include <FL/Fl_Input.H>
 
 class rmgmpref {
 public:
@@ -52,6 +53,21 @@ private:
   static void cb_Browse1(Fl_Button*, void*);
 public:
   Fl_Check_Button *DRespect;
+  Fl_Check_Button *DUseSysEx;
+private:
+  void cb_DUseSysEx_i(Fl_Check_Button*, void*);
+  static void cb_DUseSysEx(Fl_Check_Button*, void*);
+public:
+  Fl_Input *DTextStart;
+private:
+  void cb_DTextStart_i(Fl_Input*, void*);
+  static void cb_DTextStart(Fl_Input*, void*);
+public:
+  Fl_Input *DTextAutoF;
+private:
+  void cb_DTextAutoF_i(Fl_Input*, void*);
+  static void cb_DTextAutoF(Fl_Input*, void*);
+public:
   void GuardaPrefs();
   void MiraClientes();
 };

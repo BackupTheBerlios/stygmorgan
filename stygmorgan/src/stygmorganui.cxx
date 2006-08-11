@@ -4724,6 +4724,20 @@ void stygmorgan::sema() {
    { rmgmo->tapaga=0;
      FunciLeds(1);
    }
+   
+   if (rmgmo->pbStart)
+   {
+     rmgmo->pbStart=0;
+     if (STST->value()) STST->value(0); else STST->value(1);
+     STST->do_callback();
+   }
+   
+    if (rmgmo->pbAutoF)
+   {
+     rmgmo->pbAutoF=0;
+     if (AutoFill->value()) AutoFill->value(0); else AutoFill->value(1);
+     AutoFill->do_callback();
+   }
 }
 
 void stygmorgan::MoreSolo() {

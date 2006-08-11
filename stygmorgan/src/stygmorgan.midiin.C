@@ -239,6 +239,22 @@ RMGMO::midievents ()
       }
     }
 
+
+if  ((usesysex) && (midievent->type == SND_SEQ_EVENT_SYSEX))
+    {    
+
+unsigned char *data = (unsigned char *) midievent->data.ext.ptr;
+
+
+if ( strcmp((const char *)data,(const char *) START) == 0 ) pbStart=1;
+if ( strcmp((const char *)data,(const char *) AUTOF) == 0 ) pbAutoF=1;
+
+
+    }
+
+
+
+
   snd_seq_free_event(midievent);
 
 };
