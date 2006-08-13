@@ -18,7 +18,7 @@ char **argv= (char **) pepe;
 Fl_Help_Dialog *visor = new Fl_Help_Dialog;
 
 bzero(temp,sizeof(temp));
-sprintf(temp,"%s/stygmorgan.html",HELPDIR);
+sprintf(temp,"%s/html/stygmorgan.html",HELPDIR);
 
 visor->load(temp);
 
