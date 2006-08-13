@@ -84,6 +84,9 @@ Requirements
 - Linux, this software will not be ported to Win32 contrary to which it took with
   gmorgan, so I feel much by the Windows users.
 
+- automake-1.9, maybe you can compile with older versions of automake but
+  automake1.9 version is recommended.
+
 - ALSA, stygmorgan uses the ALSA sequencer , so it must be compiled in-kernel or
   activated like module. 
 
