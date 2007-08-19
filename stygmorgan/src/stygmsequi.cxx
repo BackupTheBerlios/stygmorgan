@@ -19,7 +19,10 @@ ky=(H-20)/6;
 for ( int t=0; t<children(); t++ ) 
   {          
     Fl_Widget *w = child(t);
-    if ((int) w->user_data() > 0)
+    
+    long long temp = (long long) w->user_data();
+    
+    if ((int) temp > 0)
      {
      w->resize((kx*p)+1 ,(ky*q)+1,kx,ky);
      p++;
@@ -631,7 +634,7 @@ void sequencer::song_call(Fl_Input* o, void* v) {
 }
 
 inline void sequencer::song_call_i(Fl_Input* o, void*) {
-  int kd = (int) o->user_data();
+  long long kd = (long long) o->user_data();
 
 if (kd <= 128)
 {
@@ -695,7 +698,7 @@ void sequencer::song_call1(Fl_Value_Input* o, void* v) {
 }
 
 void sequencer::song_call1_i(Fl_Value_Input* o, void*) {
-  int kd = (int) o->user_data();
+  long long kd = (long long) o->user_data();
 int j;
 
 
@@ -724,7 +727,9 @@ MetePats();
   {          
     Fl_Widget *w = o->parent()->child(t);
     
-    if ((int) w->user_data()==(4096+j))
+    long long temp = (long long) w->user_data();
+    
+    if (temp ==(4096+j))
       { 
         Fl_Value_Input* k;
         k =  (Fl_Value_Input*) w; 
@@ -746,9 +751,9 @@ while ((t1)<=128)
                 {
                  Fl_Widget *w = g->child(t);
 
-                 
+                 long long temp1 = (long long) w->user_data();    
               
-                 if ((int) w->user_data()==(1280+t1))
+                 if (temp1 ==(1280+t1))
                    {
                       switch(rmgmo->divisor)
                            {
@@ -763,7 +768,7 @@ while ((t1)<=128)
                             } 
                    }    
        
-                if ((int) w->user_data()==(1152+t1))
+                if (temp1 ==(1152+t1))
                   {
                      switch(rmgmo->divisor)
                          {
@@ -845,7 +850,7 @@ void sequencer::song_call2(Fl_Button* o, void* v) {
 
 inline void sequencer::song_call2_i(Fl_Button* o, void*) {
   int i;
-int kd = (int) o->user_data();
+long long kd = (long long) o->user_data();
 if ((kd > 256) && (kd <=384))
 {
  for(i=1; i<=128; i++)
@@ -1341,9 +1346,9 @@ while ((t1)<=128)
                 {
                  Fl_Widget *w = g->child(t);
 
-                 
+                 long long temp= (long long) w->user_data();
               
-                 if ((int) w->user_data()==(1280+t1))
+                 if ( temp ==(1280+t1))
                    {
                       switch(rmgmo->divisor)
                            {
@@ -1358,7 +1363,9 @@ while ((t1)<=128)
                             } 
                    }    
        
-                if ((int) w->user_data()==(1152+t1))
+                   
+       
+                if (temp ==(1152+t1))
                   {
                      switch(rmgmo->divisor)
                          {
