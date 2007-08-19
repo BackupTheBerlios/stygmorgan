@@ -1,6 +1,3 @@
-datadir = $(prefix)/share/${PACKAGE}
-helpdir = $(prefix)/share/doc/${PACKAGE}
-DEFS = -DHELPDIR=\"$(helpdir)\" -DDATADIR=\"$(datadir)\" @DEFS@
 bin_PROGRAMS = stygmorgan
 stygmorgan_SOURCES = main.C \
 	stygmorgan.C \

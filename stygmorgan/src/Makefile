@@ -96,7 +96,7 @@ CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -O2 -Wall -I/usr/include/freetype2
 CYGPATH_W = echo
-DEFS = -DHELPDIR=\"$(helpdir)\" -DDATADIR=\"$(datadir)\" -DHAVE_CONFIG_H
+DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -139,7 +139,7 @@ am__tar = ${AMTAR} chof - "$$tardir"
 am__untar = ${AMTAR} xf -
 bindir = ${exec_prefix}/bin
 build_alias = 
-datadir = $(prefix)/share/${PACKAGE}
+datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
@@ -164,7 +164,6 @@ sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 sysconfdir = ${prefix}/etc
 target_alias = 
-helpdir = $(prefix)/share/doc/${PACKAGE}
 stygmorgan_SOURCES = main.C \
 	stygmorgan.C \
 	stygmorgan.midiimport.C \

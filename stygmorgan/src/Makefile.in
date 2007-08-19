@@ -96,7 +96,7 @@ CXX = @CXX@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
-DEFS = -DHELPDIR=\"$(helpdir)\" -DDATADIR=\"$(datadir)\" @DEFS@
+DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -139,7 +139,7 @@ am__tar = @am__tar@
 am__untar = @am__untar@
 bindir = @bindir@
 build_alias = @build_alias@
-datadir = $(prefix)/share/${PACKAGE}
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -164,7 +164,6 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-helpdir = $(prefix)/share/doc/${PACKAGE}
 stygmorgan_SOURCES = main.C \
 	stygmorgan.C \
 	stygmorgan.midiimport.C \

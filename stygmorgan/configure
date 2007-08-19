@@ -5319,11 +5319,6 @@ echo "$as_me: error: aconnect not installed!" >&2;}
 fi
 
 
-cat >>confdefs.h <<\_ACEOF
-#define WEBSITE "stygmorgan.berlios.de"
-_ACEOF
-
-
 # Checks for libraries.
 
 { echo "$as_me:$LINENO: checking for main in -lXft" >&5
@@ -5844,6 +5839,31 @@ _ACEOF
   LIBS="-lXpm $LIBS"
 
 fi
+
+
+if test "x$prefix" == "xNONE"; then
+prefix=/usr/local
+fi
+
+
+DATADIR="$prefix/share/${PACKAGE}"
+HELPDIR="$prefix/share/doc/${PACKAGE}"
+
+
+cat >>confdefs.h <<_ACEOF
+#define DATADIR "$DATADIR"
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define HELPDIR "$HELPDIR"
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define WEBSITE "stygmorgan.berlios.de"
+_ACEOF
+
 
 
 ac_config_files="$ac_config_files Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile doc/DSPeffects/Makefile"

@@ -24,7 +24,6 @@ if test -z "$ACONNECT"; then
   AC_MSG_ERROR([aconnect not installed!])
 fi
 
-AC_DEFINE([WEBSITE],["stygmorgan.berlios.de"],[WEBSITE])
 
 # Checks for libraries.
 AC_CHECK_LIB([Xft], [main])
@@ -35,6 +34,19 @@ AC_CHECK_LIB([fltk], [main])
 AC_CHECK_LIB([fontconfig], [main])
 AC_CHECK_LIB([freetype], [main])
 AC_CHECK_LIB([Xpm],[main])
+
+if test "x$prefix" == "xNONE"; then
+prefix=/usr/local
+fi
+
+
+DATADIR="$prefix/share/${PACKAGE}"
+HELPDIR="$prefix/share/doc/${PACKAGE}"
+
+AC_DEFINE_UNQUOTED(DATADIR,"$DATADIR",[DATADIR])
+AC_DEFINE_UNQUOTED(HELPDIR,"$HELPDIR",[HELPDIR])
+AC_DEFINE([WEBSITE],["stygmorgan.berlios.de"],[WEBSITE])
+
 
 AC_OUTPUT(Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile doc/DSPeffects/Makefile )
 
