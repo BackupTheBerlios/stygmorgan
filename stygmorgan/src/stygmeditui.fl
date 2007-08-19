@@ -22,8 +22,7 @@ decl {\#include <FL/Fl_Browser.H>} {public
 
 class ElBro {: {public Fl_Browser}
 } {
-  Function {ElBro(int X, int Y, int W, int H) : Fl_Browser(X,Y,W,H)} {open
-  } {}
+  Function {ElBro(int X, int Y, int W, int H) : Fl_Browser(X,Y,W,H)} {} {}
   Function {resize(int X, int Y,int W, int H)} {open
   } {
     code {int i;
@@ -62,7 +61,7 @@ Function {type_cb(Fl_Widget* o,void* v)} {} {
 
 class rmgmedit {open
 } {
-  Function {rmgmedit(RMGMO *rmgmo_)} {open C
+  Function {rmgmedit(RMGMO *rmgmo_)} {C
   } {
     code {char temp[80];
 int x1,y1,w1,h1;
@@ -110,8 +109,7 @@ rmgmeditwin->show(argc,argv);
 
 rmgmeditwin->resize(x1,y1,w1,h1);
 
-ReadPattern();} {selected
-    }
+ReadPattern();} {}
   }
   decl {RMGMO *rmgmo;} {}
   Function {make_window()} {} {
@@ -188,25 +186,25 @@ if (sAllE->value())
       } {
         Submenu sFunctions {
           label {&Functions}
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem {} {
             label {Brush Drums XG->GM}
             callback {rmgmo->XGGM();
 ReadPattern();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
         Submenu {} {
           label {&Help} open
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem {} {
             label Help
             callback {rmgmo->ventana=7;
 EditBro->redraw();
 ReadPattern();}
-            xywh {0 0 100 20} shortcut 0xffbe divider
+            xywh {0 0 100 20} shortcut 0xffbe labelsize 14 divider
           }
           MenuItem {} {
             label About
@@ -215,7 +213,7 @@ wabout=1;
 rmgmo->ventana=1;
 EditBro->redraw();
 ReadPattern();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
       }
@@ -492,11 +490,14 @@ EditBro->add(temp);
 
 EditBro->redraw();} {}
   }
-  Function {type_cb_i(Fl_Widget* o,void* v)} {} {
+  Function {type_cb_i(Fl_Widget* o,void* v)} {open
+  } {
     code {int i=0;
 char temp[28];
+long long cast_v=(long long)v;
 
-chsel=(int)v;
+
+chsel=(int)cast_v;
 
 switch (chsel)
 {
@@ -526,7 +527,8 @@ SChMidi->value(chsel);
 
 
 
-ReadPattern();} {}
+ReadPattern();} {selected
+    }
   }
   Function {make_eventwindow()} {} {
     Fl_Window Eventwin {

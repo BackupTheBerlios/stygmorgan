@@ -745,8 +745,10 @@ EditBro->redraw();
 void rmgmedit::type_cb_i(Fl_Widget* o,void* v) {
   int i=0;
 char temp[28];
+long long cast_v=(long long)v;
 
-chsel=(int)v;
+
+chsel=(int)cast_v;
 
 switch (chsel)
 {
