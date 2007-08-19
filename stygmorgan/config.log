@@ -347,8 +347,7 @@ config.status:647: creating doc/Makefile
 config.status:647: creating doc/html/Makefile
 config.status:647: creating doc/examples/Makefile
 config.status:647: creating doc/DSPeffects/Makefile
-config.status:647: creating config.h
-config.status:887: config.h is unchanged
+config.status:647: creating src/config.h
 config.status:933: executing depfiles commands
 
 ## ---------------- ##

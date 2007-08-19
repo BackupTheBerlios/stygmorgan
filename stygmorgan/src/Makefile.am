@@ -1,7 +1,6 @@
 datadir = $(prefix)/share/${PACKAGE}
 helpdir = $(prefix)/share/doc/${PACKAGE}
-website = "stygmorgan.berlios.de"
-DEFS = -DHELPDIR=\"$(helpdir)\" -DDATADIR=\"$(datadir)\" -DWEBSITE=\"$(website)\"  @DEFS@
+DEFS = -DHELPDIR=\"$(helpdir)\" -DDATADIR=\"$(datadir)\" @DEFS@
 bin_PROGRAMS = stygmorgan
 stygmorgan_SOURCES = main.C \
 	stygmorgan.C \

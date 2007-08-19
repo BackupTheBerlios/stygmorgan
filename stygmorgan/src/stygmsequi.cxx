@@ -458,7 +458,7 @@ stygmseqwin->show(argc,argv);
 
 void * v=Casi;
 
-Fl::add_timeout(1.0/4.0,tick,v);
+Fl::add_timeout(1.0/500.0,tick,v);
 }
 
 void sequencer::tick(void* v) {
@@ -466,7 +466,7 @@ void sequencer::tick(void* v) {
 
 o->do_callback();
 
-Fl::repeat_timeout(1.0/8.0,tick,v);
+Fl::repeat_timeout(1.0/500.0,tick,v);
 }
 
 Fl_Double_Window* sequencer::make_window() {

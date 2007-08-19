@@ -15,7 +15,8 @@ doc_DATA= pontodocap \
 	fv-filters.inc \
 	fv-routes.inc \
 	refl-default.inc
-	
+
+EXTRA_DIST = $(doc_DATA)	
 	
 	
 	

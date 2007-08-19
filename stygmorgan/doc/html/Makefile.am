@@ -15,7 +15,7 @@ doc_DATA= stygmorgan.html \
 	SeqWin1.png \
 	TempoTrack.png
 	
-	
+EXTRA_DIST = $(doc_DATA)	
 	
 	
 	

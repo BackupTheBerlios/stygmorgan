@@ -23,11 +23,9 @@ decl {\#include <FL/Fl_File_Chooser.H>} {public
 decl {\#include "stygmorgan.h"} {public
 } 
 
-class stygmorgan {open
-} {
+class stygmorgan {} {
   decl {RMGMO *rmgmo;} {}
-  Function {make_window()} {open
-  } {
+  Function {make_window()} {} {
     Fl_Window rmgmorganwin {
       callback {GuardaPref();
 Pexitprogram=1;
@@ -1020,7 +1018,7 @@ DP15->label(rmgmo->PresetList[rmgmo->CalculaBanco(nc)].PBanco[rmgmo->CM[nc].prog
       } {
         Submenu File {
           label {&File}
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem NewSound {
             label {New Sound}
@@ -1035,7 +1033,7 @@ strcpy(rmgmo->nSound.Name,pepe);
 VSound->label(rmgmo->nSound.Name);
 labelwin(5);
 }}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem LoadSounds {
             label {Read Sounds}
@@ -1045,7 +1043,7 @@ filename=fl_file_chooser("Read Sounds:","SNDR Files (*.sndr)",NULL,0);
 if (filename==NULL) return;
 rmgmo->readsounds(filename);
 Leer_Sounds();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem SaveSounds {
             label {Save Sound}
@@ -1056,14 +1054,14 @@ else rmgmo->writesound((int)ListaSounds->value());
 rmgmo->readsounds(rmgmo->SoundsFilename);
 Leer_Sounds();
 labelwin(1);}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label {Delete Sound}
             callback {rmgmo->deletesound(ListaSounds->value());
 rmgmo->readsounds(rmgmo->SoundsFilename);
 Leer_Sounds();}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem LoadStyles {
             label {Read Styles}
@@ -1073,19 +1071,19 @@ filename=fl_file_chooser("Read Styles:","STYR Files (*.styr)",NULL,0);
 if (filename==NULL) return;
 rmgmo->readstyles(filename);
 Leer_Styles(1);}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem SaveStyles {
             label {Save Style}
             callback {SaveStylesFunction();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem DelStyle {
             label {Delete Style}
             callback {rmgmo->writestylec(rmgmo->numLista[(int)ListaStyles->value()],1);
 rmgmo->readstyles(rmgmo->StylesFilename);
 Leer_Styles(1);}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem ImportSty {
             label {Import .STY File}
@@ -1103,7 +1101,7 @@ ponmix();
 rmgmo->AsignaTabla();
 EnAp();
 CVari(0,1);}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem {} {
             label {New Registration}
@@ -1118,7 +1116,7 @@ labelwin(4);
 }
 else
 return;}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label {Read Registrations}
@@ -1129,7 +1127,7 @@ if (filename==NULL) return;
 rmgmo->readregistrations(filename);
 Leer_Registrations();
 BroReg->value(BroReg->size());}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label {Save Registration}
@@ -1145,14 +1143,14 @@ else
 rmgmo->writeregistration((int)BroReg->value());
 Leer_Registrations();
 labelwin(2);}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label {Delete Registration}
             callback {rmgmo->deleteregistration(BroReg->value());
 rmgmo->readregistrations(rmgmo->RegisFilename);
 Leer_Registrations();}
-            xywh {10 10 100 20} divider
+            xywh {10 10 100 20} labelsize 14 divider
           }
           MenuItem {} {
             label {Load Preset Names}
@@ -1161,7 +1159,7 @@ filename=fl_file_chooser("Read Preset Names:","(*)",NULL,0);
 
 if (filename==NULL) return;
 rmgmo->loadpreset(filename);}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label {Load Drum Note Names}
@@ -1169,17 +1167,17 @@ rmgmo->loadpreset(filename);}
 filename=fl_file_chooser("Read Drum Note Names:","(*)",NULL,0);
 if (filename==NULL) return;
 rmgmo->loaddrumset(filename);}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem Exit {
             label Exit
             callback {rmgmorganwin->do_callback();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
         Submenu sEdit {
           label {&Edit}
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem EPattern {
             label {Pattern Events }
@@ -1193,7 +1191,7 @@ coord();
 rmgmo->vuelve=rmgmo->Variacion;
 rmgmo->ventana=2;
 rmgmo->weventeditor=1;}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem MixerE {
             label {Copy pattern mixer to...}
@@ -1204,7 +1202,7 @@ ListaStyles->deactivate();
 ImportSty->deactivate();
 SelectType->deactivate();
 CreaCMixer();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label {Pattern Params}
@@ -1218,7 +1216,7 @@ coord();
 rmgmo->vuelve=rmgmo->Variacion;
 rmgmo->wpatterneditor=1;
 rmgmo->ventana=3;}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem {} {
             label {Style Params}
@@ -1229,7 +1227,7 @@ SelectType->deactivate();
 coord();
 rmgmo->wstyleeditor=1;
 rmgmo->ventana=4;}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
         MenuItem {} {
@@ -1238,7 +1236,7 @@ rmgmo->ventana=4;}
 coord();
 rmgmo->wpreferences=1;
 rmgmo->ventana=5;}
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         }
         MenuItem ElSeq {
           label {&Sequencer}
@@ -1255,17 +1253,17 @@ FGBM->do_callback();
 rmgmo->vuelve=rmgmo->Variacion;
 rmgmo->ventana=6;
 rmgmo->wsequencer=1;}
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         }
         Submenu {} {
           label {&Help} open
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem {} {
             label Help
             callback {coord();
 rmgmo->ventana=7;}
-            xywh {0 0 100 20} shortcut 0xffbe divider
+            xywh {0 0 100 20} shortcut 0xffbe labelsize 14 divider
           }
           MenuItem {} {
             label About
@@ -1273,7 +1271,7 @@ rmgmo->ventana=7;}
 coord();
 wabout=1;
 rmgmo->ventana=1;}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
       }
@@ -1864,7 +1862,8 @@ labelwin(1);
 
 void * v=DCompas;
 
-Fl::add_timeout(1.0/500.0,tick,v);} {}
+Fl::add_timeout(1.0/500.0,tick,v);} {selected
+    }
   }
   Function {tick(void* v)} {return_type {static void}
   } {
@@ -2800,8 +2799,7 @@ CVari(0,rmgmo->Variacion);} {}
      rmgmo->pbAutoF=0;
      if (AutoFill->value()) AutoFill->value(0); else AutoFill->value(1);
      AutoFill->do_callback();
-   }} {selected
-    }
+   }} {}
   }
   Function {MoreSolo()} {} {
     code {ActuaOnOff();

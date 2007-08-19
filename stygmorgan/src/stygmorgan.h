@@ -32,7 +32,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <X11/xpm.h>
-#include "../config.h"
+#include "config.h"
 #define MAGIC_FILE 0x4d546864
 #define MAGIC_TRACK 0x4d54726b
 #define CASM 0x4341534d

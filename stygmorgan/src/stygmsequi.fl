@@ -92,7 +92,8 @@ stygmseqwin->show(argc,argv);
 
 void * v=Casi;
 
-Fl::add_timeout(1.0/4.0,tick,v);} {}
+Fl::add_timeout(1.0/500.0,tick,v);} {selected
+    }
   }
   decl {RMGMO *rmgmo;} {}
   Function {tick(void* v)} {return_type {static void}
@@ -101,7 +102,7 @@ Fl::add_timeout(1.0/4.0,tick,v);} {}
 
 o->do_callback();
 
-Fl::repeat_timeout(1.0/8.0,tick,v);} {}
+Fl::repeat_timeout(1.0/500.0,tick,v);} {}
   }
   Function {make_window()} {} {
     Fl_Window stygmseqwin {
@@ -125,12 +126,12 @@ delete stygmseqwin;}
       } {
         Submenu {} {
           label {&File}
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem {} {
             label New
             callback {NewSong();}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem {} {
             label {Load Song}
@@ -146,7 +147,7 @@ Slider->do_callback();
 MTempoTrack->value(SongF.MasterT);
 GeneraScroll();
 labelwin();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label {Save Song}
@@ -158,7 +159,7 @@ filename=fl_filename_setext(filename,EXT);
 \#undef EXT
 SongF.bpm=(int)STempo->value();
 rmgmo->savesong(filename);}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem {} {
             label {Export Midi File}
@@ -172,32 +173,32 @@ filename=fl_filename_setext(filename,EXT);
 \#undef EXT
 rmgmo->saveMidiFile(filename);
 rmgmo->cas=1;}
-            xywh {0 0 100 20} divider
+            xywh {0 0 100 20} labelsize 14 divider
           }
           MenuItem {} {
             label Close
             callback {stygmseqwin->do_callback();}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
         Submenu {} {
           label {&Edit} open
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem {} {
             label Copy
             callback {PreparaEdit(1);}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label Delete
             callback {PreparaEdit(2);}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
           MenuItem {} {
             label Move
             callback {PreparaEdit(3);}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
         MenuItem {} {
@@ -215,23 +216,23 @@ char **argv= (char **) pepe;
 WTT->icon((char *)p);
 
 WTT->show(argc,argv);}
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         }
         Submenu {} {
           label {&Help} open
-          xywh {0 0 100 20}
+          xywh {0 0 100 20} labelsize 14
         } {
           MenuItem {} {
             label Help
             callback {rmgmo->ventana=7;}
-            xywh {0 0 100 20} shortcut 0xffbe divider
+            xywh {0 0 100 20} shortcut 0xffbe labelsize 14 divider
           }
           MenuItem {} {
             label About
             callback {if(wabout) return;
 wabout=1;
 rmgmo->ventana=1;}
-            xywh {0 0 100 20}
+            xywh {0 0 100 20} labelsize 14
           }
         }
       }
@@ -1163,8 +1164,7 @@ while ((t1)<=128)
 
 Scr->redraw();
 Fl::flush();
-Scr->position(0,0);} {selected
-    }
+Scr->position(0,0);} {}
   }
   Function {GuardaPrefs()} {} {
     code {Fl_Preferences stygmorgan (Fl_Preferences::USER, WEBSITE, PACKAGE);

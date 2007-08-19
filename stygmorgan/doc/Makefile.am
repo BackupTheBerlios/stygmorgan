@@ -6,5 +6,5 @@ doc_DATA= LICENSE \
 	THANKS \
 	TRANSLATE
 	
-	
+EXTRA_DIST = $(doc_DATA)	
 	
