@@ -41,6 +41,7 @@ am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
+CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -55,6 +56,7 @@ dataDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(data_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run aclocal-1.9
+ACONNECT = aconnect
 AMDEP_FALSE = #
 AMDEP_TRUE = 
 AMTAR = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run tar
@@ -71,7 +73,7 @@ CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -O2 -Wall -I/usr/include/freetype2
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE=\"stygmorgan\" -DVERSION=\"0.28\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_SYS_SELECT_H=1 -DHAVE_SYS_SOCKET_H=1 -DSELECT_TYPE_ARG1=int -DSELECT_TYPE_ARG234=\(fd_set\ \*\) -DSELECT_TYPE_ARG5=\(struct\ timeval\ \*\) -DHAVE_BZERO=1 -DHAVE_MEMSET=1 -DHAVE_SELECT=1 -DHAVE_STRDUP=1 -DHAVE_STRSTR=1 -DHAVE_UNISTD_H=1
+DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -86,16 +88,16 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = ${SHELL} $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lfltk_images -lfltk -lasound -lXpm
+LIBS = -lXpm -lfreetype -lfontconfig -lfltk -ldl -lasound -lXrender -lXft -lfltk_images -lfltk -lasound -lXpm
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run makeinfo
 OBJEXT = o
 PACKAGE = stygmorgan
-PACKAGE_BUGREPORT = 
-PACKAGE_NAME = 
-PACKAGE_STRING = 
-PACKAGE_TARNAME = 
-PACKAGE_VERSION = 
+PACKAGE_BUGREPORT = holborn@telefonica.net
+PACKAGE_NAME = stygmorgan
+PACKAGE_STRING = stygmorgan 0.28
+PACKAGE_TARNAME = stygmorgan
+PACKAGE_VERSION = 0.28
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/sh
@@ -116,7 +118,7 @@ bindir = ${exec_prefix}/bin
 build_alias = 
 datadir = $(prefix)/share/${PACKAGE}
 datarootdir = ${prefix}/share
-docdir = ${datarootdir}/doc/${PACKAGE}
+docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
 host_alias = 
@@ -145,6 +147,7 @@ data_DATA = GMDN.txt \
 	MisStyles.STYR \
 	MisReg
 
+EXTRA_DIST = $(data_DATA)
 all: all-am
 
 .SUFFIXES:

@@ -1,5 +1,6 @@
-AC_INIT
+AC_INIT([stygmorgan],[0.28],[holborn@telefonica.net])
 AC_CONFIG_SRCDIR([src/main.C])
+AC_CONFIG_HEADER([config.h])
 AM_INIT_AUTOMAKE(stygmorgan, 0.28)
 
 AC_PROG_CXX
@@ -18,6 +19,23 @@ AC_PATH_PROG(FLTK_CONFIG, fltk-config, no)
 if test "$FLTK_CONFIG" = "no"; then
   AC_MSG_ERROR(fltk-config not found)
 fi
+AC_CHECK_PROG([ACONNECT],[aconnect],[aconnect])
+if test -z "$ACONNECT"; then
+  AC_MSG_ERROR([aconnect not installed!])
+fi
+
+AC_DEFINE([WEBSITE],["stygmorgan.berlios.de"],[WEBSITE])
+
+# Checks for libraries.
+AC_CHECK_LIB([Xft], [main])
+AC_CHECK_LIB([Xrender], [main])
+AC_CHECK_LIB([asound], [main])
+AC_CHECK_LIB([dl], [main])
+AC_CHECK_LIB([fltk], [main])
+AC_CHECK_LIB([fontconfig], [main])
+AC_CHECK_LIB([freetype], [main])
+AC_CHECK_LIB([Xpm],[main])
+
 AC_OUTPUT(Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile doc/DSPeffects/Makefile )
 
 
