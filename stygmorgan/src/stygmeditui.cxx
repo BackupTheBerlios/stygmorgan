@@ -36,8 +36,7 @@ Fl_Browser::resize(X,Y,W,H);
 
 void ElBro::redraw() {
   resize(x(),y(),w(),h());
-
-Fl_Browser::redraw();
+// Fl_Browser::redraw();
 }
 
 void type_cb(Fl_Widget* o,void* v) {
@@ -56,7 +55,7 @@ void rmgmedit::cb_rmgmeditwin(Fl_Double_Window* o, void* v) {
   ((rmgmedit*)(o->user_data()))->cb_rmgmeditwin_i(o,v);
 }
 
-void rmgmedit::cb_EditBro_i(ElBro* o, void*) {
+void rmgmedit::cb_EditBro_i(Fl_Browser* o, void*) {
   int i,j,k;
 
 if (o->value()== 1) 
@@ -74,7 +73,7 @@ rmgmo->envionota(rmgmo->pcp[rmgmo->PEG[rmgmo->Variacion][i].canal],rmgmo->PEG[rm
 if (Fl::event_button()==3) 
 {
 editaevento(i);
-EditBro->redraw();
+//EditBro->redraw();
 return;
 }
 
@@ -88,7 +87,7 @@ if (sAllE->value())
     }
  };
 }
-void rmgmedit::cb_EditBro(ElBro* o, void* v) {
+void rmgmedit::cb_EditBro(Fl_Browser* o, void* v) {
   ((rmgmedit*)(o->parent()->user_data()))->cb_EditBro_i(o,v);
 }
 
@@ -121,7 +120,7 @@ void rmgmedit::cb_sPitchBend(Fl_Check_Button* o, void* v) {
 }
 
 void rmgmedit::cb__i(Fl_Menu_Bar*, void*) {
-  EditBro->redraw();
+  //EditBro->redraw();
 }
 void rmgmedit::cb_(Fl_Menu_Bar* o, void* v) {
   ((rmgmedit*)(o->parent()->user_data()))->cb__i(o,v);
@@ -137,7 +136,7 @@ void rmgmedit::cb_Brush(Fl_Menu_* o, void* v) {
 
 void rmgmedit::cb_Help_i(Fl_Menu_*, void*) {
   rmgmo->ventana=7;
-EditBro->redraw();
+//EditBro->redraw();
 ReadPattern();
 }
 void rmgmedit::cb_Help(Fl_Menu_* o, void* v) {
@@ -148,7 +147,7 @@ void rmgmedit::cb_About_i(Fl_Menu_*, void*) {
   if(wabout) return;
 wabout=1;
 rmgmo->ventana=1;
-EditBro->redraw();
+//EditBro->redraw();
 ReadPattern();
 }
 void rmgmedit::cb_About(Fl_Menu_* o, void* v) {
@@ -287,7 +286,7 @@ void rmgmedit::cb_Cancel(Fl_Button* o, void* v) {
 
 void rmgmedit::cb_Eventwin_i(Fl_Double_Window*, void*) {
   Eventwin->hide();
-EditBro->redraw();
+//EditBro->redraw();
 }
 void rmgmedit::cb_Eventwin(Fl_Double_Window* o, void* v) {
   ((rmgmedit*)(o->user_data()))->cb_Eventwin_i(o,v);
@@ -383,7 +382,15 @@ Fl::visual(FL_DOUBLE|FL_INDEX);
 Fl::visual(FL_RGB);
 rmgmo=rmgmo_;
 
+
+
+static const int colsizes[]= {60,100,32,110,160,160,0};
+
+
 make_window();
+
+EditBro->column_widths((const int*) colsizes);
+
 make_eventwindow();
 
 Fl_Preferences stygmorgan (Fl_Preferences::USER, WEBSITE, PACKAGE);
@@ -425,20 +432,11 @@ Fl_Double_Window* rmgmedit::make_window() {
     rmgmeditwin->color(FL_BACKGROUND2_COLOR);
     rmgmeditwin->labelsize(11);
     rmgmeditwin->callback((Fl_Callback*)cb_rmgmeditwin, (void*)(this));
-    { EditBro = new ElBro(5, 130, 745, 405);
+    { EditBro = new Fl_Browser(5, 130, 745, 405);
       EditBro->tooltip(gettext("Left Click Select - Rigth Click Edit"));
       EditBro->type(3);
-      EditBro->box(FL_NO_BOX);
-      EditBro->color(FL_BACKGROUND2_COLOR);
-      EditBro->selection_color(FL_SELECTION_COLOR);
-      EditBro->labeltype(FL_NORMAL_LABEL);
-      EditBro->labelfont(0);
-      EditBro->labelsize(14);
-      EditBro->labelcolor(FL_FOREGROUND_COLOR);
       EditBro->callback((Fl_Callback*)cb_EditBro);
-      EditBro->align(FL_ALIGN_BOTTOM);
-      EditBro->when(FL_WHEN_RELEASE_ALWAYS);
-    } // ElBro* EditBro
+    } // Fl_Browser* EditBro
     { Fl_Group* o = new Fl_Group(5, 60, 90, 70);
       o->box(FL_THIN_DOWN_BOX);
       o->color(FL_BACKGROUND2_COLOR);
@@ -473,9 +471,10 @@ Fl_Double_Window* rmgmedit::make_window() {
       o->callback((Fl_Callback*)cb_);
       o->menu(menu_);
     } // Fl_Menu_Bar* o
-    { Hear = new Fl_Button(595, 35, 25, 25, gettext("@<->"));
+    { Hear = new Fl_Button(595, 35, 35, 35, gettext("@<->"));
+      Hear->tooltip(gettext("Hear Events"));
       Hear->type(1);
-      Hear->color((Fl_Color)215);
+      Hear->color((Fl_Color)41);
       Hear->selection_color((Fl_Color)3);
       Hear->callback((Fl_Callback*)cb_Hear);
     } // Fl_Button* Hear
@@ -737,7 +736,7 @@ EditBro->add(temp);
  
 }
 
-EditBro->redraw();
+// EditBro->redraw();
 }
 
 void rmgmedit::type_cb_i(Fl_Widget* o,void* v) {

@@ -15,6 +15,7 @@ public:
 };
 void type_cb(Fl_Widget* o,void* v);
 #include <FL/Fl_Double_Window.H>
+#include <FL/Fl_Browser.H>
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Menu_Bar.H>
@@ -35,10 +36,10 @@ private:
   void cb_rmgmeditwin_i(Fl_Double_Window*, void*);
   static void cb_rmgmeditwin(Fl_Double_Window*, void*);
 public:
-  ElBro *EditBro;
+  Fl_Browser *EditBro;
 private:
-  void cb_EditBro_i(ElBro*, void*);
-  static void cb_EditBro(ElBro*, void*);
+  void cb_EditBro_i(Fl_Browser*, void*);
+  static void cb_EditBro(Fl_Browser*, void*);
 public:
   Fl_Check_Button *sNote;
 private:

@@ -1,5 +1,5 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0107 
+version 1.0108 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
@@ -23,8 +23,7 @@ decl {\#include <FL/Fl_Browser.H>} {public
 class ElBro {: {public Fl_Browser}
 } {
   Function {ElBro(int X, int Y, int W, int H) : Fl_Browser(X,Y,W,H)} {} {}
-  Function {resize(int X, int Y,int W, int H)} {open
-  } {
+  Function {resize(int X, int Y,int W, int H)} {} {
     code {int i;
 int sizes[512];
 static const int colsizes[]= {60,100,32,110,160,160,0};
@@ -50,8 +49,7 @@ Fl_Browser::resize(X,Y,W,H);} {}
   }
   Function {redraw()} {} {
     code {resize(x(),y(),w(),h());
-
-Fl_Browser::redraw();} {}
+// Fl_Browser::redraw();} {}
   }
 } 
 
@@ -59,8 +57,7 @@ Function {type_cb(Fl_Widget* o,void* v)} {} {
   code {((rmgmedit*)(o->parent()->user_data()))->type_cb_i(o,v);} {}
 } 
 
-class rmgmedit {open
-} {
+class rmgmedit {} {
   Function {rmgmedit(RMGMO *rmgmo_)} {C
   } {
     code {char temp[80];
@@ -75,7 +72,15 @@ Fl::visual(FL_DOUBLE|FL_INDEX);
 Fl::visual(FL_RGB);
 rmgmo=rmgmo_;
 
+
+
+static const int colsizes[]= {60,100,32,110,160,160,0};
+
+
 make_window();
+
+EditBro->column_widths((const int*) colsizes);
+
 make_eventwindow();
 
 Fl_Preferences stygmorgan (Fl_Preferences::USER, WEBSITE, PACKAGE);
@@ -119,8 +124,8 @@ GuardaPrefs();
 o->hide();
 rmgmo->weventeditor=0;
 o->clear();
-delete rmgmeditwin;}
-      xywh {1462 142 750 535} type Double color 7 labelsize 11 hide resizable size_range {800 600 0 0}
+delete rmgmeditwin;} open
+      xywh {464 210 750 535} type Double color 7 labelsize 11 hide resizable size_range {800 600 0 0}
     } {
       Fl_Browser EditBro {
         callback {int i,j,k;
@@ -140,7 +145,7 @@ rmgmo->envionota(rmgmo->pcp[rmgmo->PEG[rmgmo->Variacion][i].canal],rmgmo->PEG[rm
 if (Fl::event_button()==3) 
 {
 editaevento(i);
-EditBro->redraw();
+//EditBro->redraw();
 return;
 }
 
@@ -152,9 +157,8 @@ if (sAllE->value())
       if ((rmgmo->PEG[rmgmo->Variacion][k].tipo == rmgmo->PEG[rmgmo->Variacion][i].tipo) && (rmgmo->PEG[rmgmo->Variacion][k].nota == rmgmo->PEG[rmgmo->Variacion][i].nota)
       && (rmgmo->PEG[rmgmo->Variacion][k].canal == rmgmo->PEG[rmgmo->Variacion][i].canal)) o->select(j,1);
     }
- }}
+ }} selected
         tooltip {Left Click Select - Rigth Click Edit} xywh {5 130 745 405} type Multi
-        class ElBro
       }
       Fl_Group {} {
         xywh {5 60 90 70} box THIN_DOWN_BOX color 7
@@ -181,7 +185,7 @@ if (sAllE->value())
         }
       }
       Fl_Menu_Bar {} {
-        callback {EditBro->redraw();}
+        callback {//EditBro->redraw();}
         xywh {0 0 755 20} color 7
       } {
         Submenu sFunctions {
@@ -202,7 +206,7 @@ ReadPattern();}
           MenuItem {} {
             label Help
             callback {rmgmo->ventana=7;
-EditBro->redraw();
+//EditBro->redraw();
 ReadPattern();}
             xywh {0 0 100 20} shortcut 0xffbe labelsize 14 divider
           }
@@ -211,7 +215,7 @@ ReadPattern();}
             callback {if(wabout) return;
 wabout=1;
 rmgmo->ventana=1;
-EditBro->redraw();
+//EditBro->redraw();
 ReadPattern();}
             xywh {0 0 100 20} labelsize 14
           }
@@ -220,7 +224,7 @@ ReadPattern();}
       Fl_Button Hear {
         label {@<->}
         callback {if (o->value() == 0) rmgmo->panico(1,0,15);}
-        xywh {595 35 25 25} type Toggle color 215 selection_color 3
+        tooltip {Hear Events} xywh {595 35 35 35} type Toggle color 41 selection_color 3
       }
       Fl_Box {} {
         xywh {100 60 90 70} box THIN_DOWN_BOX color 7
@@ -240,7 +244,7 @@ ReadPattern();}
         label Select
         xywh {210 35 185 20} box THIN_DOWN_BOX color 26 labeltype ENGRAVED_LABEL labelfont 1 align 16
       }
-      Fl_Group {} {
+      Fl_Group {} {open
         xywh {210 60 185 60} box THIN_DOWN_BOX color 7
       } {
         Fl_Check_Button sAllE {
@@ -316,7 +320,7 @@ ReadPattern();}
         callback {rmgmeditwin->do_callback();}
         xywh {660 55 85 25} labelsize 11
       }
-      Fl_Group {} {
+      Fl_Group {} {open
         xywh {500 60 90 70} box THIN_DOWN_BOX color 7
       } {
         Fl_Button {} {
@@ -488,10 +492,9 @@ EditBro->add(temp);
  
 }
 
-EditBro->redraw();} {}
+// EditBro->redraw();} {}
   }
-  Function {type_cb_i(Fl_Widget* o,void* v)} {open
-  } {
+  Function {type_cb_i(Fl_Widget* o,void* v)} {} {
     code {int i=0;
 char temp[28];
 long long cast_v=(long long)v;
@@ -527,13 +530,12 @@ SChMidi->value(chsel);
 
 
 
-ReadPattern();} {selected
-    }
+ReadPattern();} {}
   }
   Function {make_eventwindow()} {} {
     Fl_Window Eventwin {
       callback {Eventwin->hide();
-EditBro->redraw();}
+//EditBro->redraw();}
       xywh {1671 292 340 290} type Double color 7 hide
     } {
       Fl_Button {} {
