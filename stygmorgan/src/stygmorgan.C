@@ -343,10 +343,12 @@ NCE[20].note = -4;  NCE[21].note = -3; NCE[22].note = -2; NCE[23].note = -1;
 
 
   snd_seq_open (&midi_out, "hw", SND_SEQ_OPEN_OUTPUT,0);
+  snd_seq_set_client_name(midi_out, "stygmorgan");  
   snd_config_update_free_global();
 
 
   snd_seq_open (&midi_in, "hw", SND_SEQ_OPEN_INPUT, 0);
+  snd_seq_set_client_name(midi_in, "stygmorgan");
   snd_config_update_free_global();
 
   char portname[50];
