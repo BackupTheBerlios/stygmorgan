@@ -8,7 +8,7 @@ gmorgan ChangeLog
 --------------------------------------------------------------------------------------------------------
 
 
-
+- Reduce RT priority to 10
 - Fixed compilation on 64bit machines.
 - Autotools changes.
 

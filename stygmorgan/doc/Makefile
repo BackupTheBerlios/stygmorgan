@@ -81,7 +81,7 @@ CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -O2 -Wall -I/usr/include/freetype2
+CXXFLAGS = -O2 -Wall -I/usr/include/freetype2 -D_THREAD_SAFE -D_REENTRANT
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps

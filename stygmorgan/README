@@ -118,8 +118,11 @@ linux distributions, available in the ALSA website: http://www.alsa-project.org
 sfxload "soundfont file"
 
 In case of not having some of these wonderful cards you would have to use a soft
-synthesizer, in Linux we have Fluidsynth and Timidity. The command line to start
-this synthesizer:
+synthesizer, we recommend to use Qsynth a qt frontend of Fluidsynth. Lastest
+versions work really well with stygmorgan. Anyway you can use command line
+synth too ... 
+
+The command line to start Fluidsynth:
 
 fluidsynth "soundfont file"
 

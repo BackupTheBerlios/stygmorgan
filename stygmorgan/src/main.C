@@ -42,7 +42,7 @@
 
   {
       sched_param scprior;
-      scprior.sched_priority=50;
+      scprior.sched_priority=11;
       int prior=sched_setscheduler(0,SCHED_FIFO,&scprior);
       if (prior==0) printf("SCHED_FIFO\n");
   };

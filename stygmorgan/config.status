@@ -559,7 +559,7 @@ s,@AMTAR@,|#_!!_#|${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run
 s,@am__tar@,|#_!!_#|${AMTAR} chof - "$$tardir",g
 s,@am__untar@,|#_!!_#|${AMTAR} xf -,g
 s,@CXX@,|#_!!_#|g++,g
-s,@CXXFLAGS@,|#_!!_#|-O2 -Wall -I/usr/include/freetype2,g
+s,@CXXFLAGS@,|#_!!_#|-O2 -Wall -I/usr/include/freetype2 -D_THREAD_SAFE -D_REENTRANT,g
 s,@LDFLAGS@,|#_!!_#|,g
 s,@CPPFLAGS@,|#_!!_#|,g
 s,@ac_ct_CXX@,|#_!!_#|g++,g
