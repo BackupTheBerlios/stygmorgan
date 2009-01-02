@@ -86,7 +86,7 @@ AMTAR = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run tar
 AUTOCONF = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run autoconf
 AUTOHEADER = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run autoheader
 AUTOMAKE = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run automake-1.9
-AWK = gawk
+AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -111,7 +111,7 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = ${SHELL} $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lXpm -lfreetype -lfontconfig -lfltk -ldl -lasound -lXrender -lXft -lfltk_images -lfltk -lasound -lXpm
+LIBS = -lXpm -lfltk -ldl -lasound -lfltk_images -lfltk -lasound -lXpm
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run makeinfo
 OBJEXT = o
