@@ -1,5 +1,5 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0107 
+version 1.0110 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
@@ -12,8 +12,7 @@ decl {//License GNU/GPL version 2} {}
 decl {\#include "stygmorgan.h"} {public
 } 
 
-class about {open
-} {
+class about {} {
   Function {about()} {open C
   } {
     code {Fl::visual(FL_DOUBLE|FL_INDEX);
@@ -72,22 +71,21 @@ TDD->buffer(buf3);
 bzero(temp,sizeof(temp));
 sprintf(temp,"%s/TRANSLATE",HELPDIR);
 buf4->insertfile(temp,1);
-TDT->buffer(buf4);} {selected
-    }
+TDT->buffer(buf4);} {}
   }
   Function {make_window()} {} {
     Fl_Window aboutwin {
       callback {aboutwin->clear();
 aboutwin->hide();
 wabout=0;
-delete aboutwin;} open
-      xywh {1487 218 625 370} type Double color 7 hide
+delete aboutwin;}
+      xywh {1480 211 625 370} type Double color 7 visible
     } {
-      Fl_Tabs {} {
+      Fl_Tabs {} {open
         xywh {0 0 615 330} color 7
       } {
         Fl_Group Tab1 {
-          label About open
+          label About
           xywh {0 30 600 295} color 7 selection_color 7
         } {
           Fl_Box progname {
@@ -98,7 +96,7 @@ delete aboutwin;} open
             xywh {20 185 565 40}
           }
           Fl_Box {} {
-            label {(c) 2006, Josep Andreu}
+            label {(c) 2006-2009, Josep Andreu} selected
             xywh {155 220 305 25}
           }
           Fl_Box {} {

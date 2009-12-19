@@ -1,5 +1,5 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0109 
+version 1.0110 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
@@ -23,16 +23,14 @@ decl {\#include <FL/Fl_File_Chooser.H>} {public
 decl {\#include "stygmorgan.h"} {public
 } 
 
-class stygmorgan {open
-} {
+class stygmorgan {} {
   decl {RMGMO *rmgmo;} {}
   Function {make_window()} {} {
     Fl_Window rmgmorganwin {
       callback {GuardaPref();
 Pexitprogram=1;
-o->hide();
-exit(0);}
-      xywh {200 109 1010 780} type Double color 39 hide resizable size_range {800 600 0 0}
+o->hide();} selected
+      xywh {193 102 1010 780} type Double color 39 resizable size_range {800 600 0 0} visible
     } {
       Fl_Group {} {
         xywh {5 325 70 450} box BORDER_BOX color 50 selection_color 7 labelfont 1 align 81
@@ -1753,7 +1751,7 @@ buscala();
         }
         Fl_Button AutoFill {
           label {Auto Fill In}
-          callback {rmgmo->AFill=(int)o->value();} selected
+          callback {rmgmo->AFill=(int)o->value();}
           xywh {360 735 155 30} type Toggle box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX shortcut 0x6f color 56 selection_color 215 labelsize 11
         }
       }

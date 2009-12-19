@@ -4,10 +4,10 @@ gmorgan ChangeLog
 
 
 
-== v0.28 (  / /2007) ==
+== v0.29 (19/12/2009) ==
 --------------------------------------------------------------------------------------------------------
 
-
+- Fix exit procedure.
 - Reduce RT priority to 10
 - Fixed compilation on 64bit machines.
 - Autotools changes.

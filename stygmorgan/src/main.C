@@ -54,7 +54,7 @@
   {
 
 
-    fprintf (stderr,"\n%s %s - Copyright (c) 2006 Josep Andreu (Holborn)\n",PACKAGE,VERSION);
+    fprintf (stderr,"\n%s %s - Copyright (c) 2006-2009 Josep Andreu (Holborn)\n",PACKAGE,VERSION);
     if (argc == 1)
       fprintf (stderr, "Try 'stygmorgan --help' for command-line options.\n");
 
@@ -212,6 +212,8 @@
                }
       }
 
+
+   exit(0);
 
   }
 
