@@ -234,7 +234,10 @@ RMGMO::midievents ()
       programa = midievent->data.control.value;
       if (pera==0)
       {
-      if (programa==0) if (sel) sel=0; else sel=1;
+      if (programa==0)
+      {
+        if (sel) sel=0; else sel=1;
+      }  
       cambioc=1;
       }
     }

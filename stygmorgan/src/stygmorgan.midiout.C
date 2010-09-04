@@ -79,17 +79,13 @@ void
 RMGMO::enviocontrol(int canal,int control, int value)
 {
 
- snd_seq_event_t midievent;
- snd_seq_ev_clear (&midievent);
-
-
-
+snd_seq_event_t midievent;
+snd_seq_ev_clear (&midievent);
 
 snd_seq_ev_set_controller (&midievent, canal, control, value);
 snd_seq_ev_set_subs (&midievent);
 snd_seq_ev_set_direct (&midievent);
 snd_seq_event_output_direct (midi_out, &midievent);
-
 
 }
 

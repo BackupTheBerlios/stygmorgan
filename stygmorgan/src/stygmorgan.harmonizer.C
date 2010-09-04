@@ -137,14 +137,13 @@ if ((PEG[Variacion][ct].tipo == 2) && (PEG[Variacion][ct].canal == track))
 
 
       if (largo > ( unsigned int) (nStyle.ppq / 4) )
-
-     
-
+      {
       if (genmidi==0) PonPlay(2, ptick, lanota,ncanal,PEG[Variacion][ct].velocity,largo);
       else 
       {
       if (cas >1)
       Ponlo(2,ptick,lanota,ncanal,PEG[Variacion][ct].velocity,largo);
+      }
       }
    }
 
