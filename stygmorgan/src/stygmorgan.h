@@ -221,6 +221,12 @@ public:
    int leer_bytes(FILE *fp, int n);
    unsigned long leer_delta(FILE *fp);
 
+  snd_seq_tick_time_t tick;
+  snd_seq_t *seq_handle;
+  snd_seq_t *midi_in;
+  snd_seq_t *midi_out;
+  snd_seq_tick_time_t ptick, ttick;
+
   
 unsigned char START[64];
 char TextSTART[128];
@@ -339,11 +345,6 @@ char TextAUTOF[128];
   int pclio[16];
   int pcpon[16];
   unsigned int longi, longic,vcompas;
-  snd_seq_tick_time_t tick;
-  snd_seq_t *seq_handle;
-  snd_seq_t *midi_in;
-  snd_seq_t *midi_out;
-  snd_seq_tick_time_t ptick, ttick;
   char NombreAcorde[20];
 
 
