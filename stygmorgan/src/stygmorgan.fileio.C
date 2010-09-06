@@ -65,8 +65,6 @@ RMGMO::readstyles(char *filename)
 int i,gg;
 long tam,tu;
 FILE *fs;
-StyleStr *popi;
-popi=&nStyle; 
 
  numstyles=0;
  strcpy(StylesFilename,filename);
@@ -76,7 +74,7 @@ popi=&nStyle;
      {
         while (!feof(fs))
             {
-                i = fread(popi, sizeof(nStyle),1,fs);
+                i = fread(&nStyle, sizeof(nStyle),1,fs);
                 if (feof(fs) == 0) procesaleido(); else break;
 
 
@@ -160,8 +158,6 @@ int kk=0;
 FILE *fs;
 char filef[80];
 char *filename;
-StyleStr *popi;
-popi=&nStyle; 
 
 
  bzero(filef, sizeof(filef));
@@ -174,7 +170,7 @@ popi=&nStyle;
        {
                while (!feof(fs) && (kk < estilo))
                  {
-                  i = fread(popi, sizeof(nStyle),1,fs);
+                  i = fread(&nStyle, sizeof(nStyle),1,fs);
                  for(i=0; i<22; i++)
                      {
                        tam =(long) ( sizeof(tempEG) * nStyle.Pattern[i].eventos);
