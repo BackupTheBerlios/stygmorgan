@@ -79,6 +79,7 @@ void
 RMGMO::enviocontrol(int canal,int control, int value)
 {
 
+
 snd_seq_event_t midievent;
 snd_seq_ev_clear (&midievent);
 

@@ -17,7 +17,7 @@
 ;;     along with this program; if not, write to the Free Software
 ;;     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ;; 
-;; $Id: fv-routes.inc,v 1.1 2006/08/07 21:47:23 holborn Exp $
+;; $Id: fv-routes.inc,v 1.2 2010/09/07 00:00:30 holborn Exp $
 
   ; These registers are used to pass samples from the fv10k1 engine.
   ; fv10k1 attaches to two (R+L) input lines, and generates three sets

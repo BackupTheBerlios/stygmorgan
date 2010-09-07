@@ -11,8 +11,19 @@ AC_C_INLINE
 AC_HEADER_STDC
 AC_FUNC_SELECT_ARGTYPES
 AC_CHECK_FUNCS([bzero memset select strdup strstr])
+
+
+IS64=$(uname -m | grep x86_64) 
+if test -z "$IS64"; then
+IS64=""
+else
+IS64=" -D_FILE_OFFSET_BITS=64 "
+fi
+
+
+
 LIBS="`fltk-config --use-images --ldflags` -lasound -lXpm"
-CXXFLAGS="-O2 -Wall `fltk-config --use-images --cxxflags`"
+CXXFLAGS="-O2 -Wall $IS64 `fltk-config --use-images --cxxflags`"
 AC_CHECK_HEADERS([unistd.h])
 AC_CHECK_HEADER(alsa/asoundlib.h, true, AC_MSG_ERROR([Alsa is required]))
 AC_PATH_PROG(FLTK_CONFIG, fltk-config, no)
@@ -46,6 +57,8 @@ HELPDIR="$prefix/share/doc/${PACKAGE}"
 AC_DEFINE_UNQUOTED(DATADIR,"$DATADIR",[DATADIR])
 AC_DEFINE_UNQUOTED(HELPDIR,"$HELPDIR",[HELPDIR])
 AC_DEFINE([WEBSITE],["stygmorgan.berlios.de"],[WEBSITE])
+
+
 
 
 AC_OUTPUT(Makefile src/Makefile data/Makefile doc/Makefile doc/html/Makefile doc/examples/Makefile doc/DSPeffects/Makefile )
