@@ -1,37 +1,43 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0107 
+version 1.0300 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
 header_name {.h} 
 code_name {.cxx}
-decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
-
-decl {//License GNU/GPL version 2} {} 
-
-decl {//Based on gmorgan} {} 
-
-decl {\#include <Fl/Fl_Scroll.H>} {public
+decl {//Copyright(c) 2006 Josep Andreu (holborn)} {private local
 } 
 
-decl {\#include <FL/Fl_File_Chooser.H>} {public
+decl {//License GNU/GPL version 2} {private local
 } 
 
-decl {\#include <Fl/Fl_Preferences.H>} {public
+decl {//Based on gmorgan} {private local
 } 
 
-decl {\#include <FL/fl_ask.H>} {public
+decl {\#include <Fl/Fl_Scroll.H>} {public local
 } 
 
-decl {\#include <FL/Fl_Value_Input.H>} {public
+decl {\#include <FL/Fl_File_Chooser.H>} {public local
 } 
 
-decl {\#include "stygmorgan.h"} {public
+decl {\#include <Fl/Fl_Preferences.H>} {public local
+} 
+
+decl {\#include <FL/fl_ask.H>} {public local
+} 
+
+decl {\#include <FL/Fl_Value_Input.H>} {public local
+} 
+
+decl {\#include "stygmorgan.h"} {public local
 } 
 
 class ElScroll {: {public Fl_Scroll}
 } {
-  Function {ElScroll(int X, int Y, int W, int H, const char* L=0) : Fl_Scroll(X,Y,W,H,L)} {} {}
+  Function {ElScroll(int X, int Y, int W, int H, const char* L=0) : Fl_Scroll(X,Y,W,H,L)} {open
+  } {
+    code {} {}
+  }
   Function {resize(int X, int Y,int W, int H)} {} {
     code {int kx,ky;
 int p=0;
@@ -62,15 +68,14 @@ for ( int t=0; t<children(); t++ )
   }
 } 
 
-class sequencer {open
-} {
+class sequencer {} {
   Function {sequencer(RMGMO *rmgmo_)} {C
   } {
     code {Fl::visual(FL_DOUBLE|FL_INDEX);
 Fl::visual(FL_RGB);
 rmgmo=rmgmo_;
 make_window();
-stygmseqwin->position(x,y);
+//stygmseqwin->position(x,y);
 labelwin();
 
 int x,y,w,h;
@@ -98,7 +103,8 @@ void * v=Casi;
 
 Fl::add_timeout(1.0/500.0,tick,v);} {}
   }
-  decl {RMGMO *rmgmo;} {}
+  decl {RMGMO *rmgmo;} {private local
+  }
   Function {tick(void* v)} {return_type {static void}
   } {
     code {Fl_Box *o = (Fl_Box*)v;
@@ -121,7 +127,7 @@ rmgmo->bass=0;
 rmgmo->wsequencer=0;
 stygmseqwin->clear();
 stygmseqwin->hide();
-delete stygmseqwin;}
+delete stygmseqwin;} open
       xywh {1412 162 800 600} type Double hide resizable size_range {800 600 0 0}
     } {
       Fl_Menu_Bar {} {
@@ -129,12 +135,12 @@ delete stygmseqwin;}
       } {
         Submenu {} {
           label {&File}
-          xywh {0 0 100 20} labelsize 14
+          xywh {0 0 100 20}
         } {
           MenuItem {} {
             label New
             callback {NewSong();}
-            xywh {0 0 100 20} labelsize 14 divider
+            xywh {0 0 100 20} divider
           }
           MenuItem {} {
             label {Load Song}
@@ -150,7 +156,7 @@ Slider->do_callback();
 MTempoTrack->value(SongF.MasterT);
 GeneraScroll();
 labelwin();}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
           MenuItem {} {
             label {Save Song}
@@ -162,7 +168,7 @@ filename=fl_filename_setext(filename,EXT);
 \#undef EXT
 SongF.bpm=(int)STempo->value();
 rmgmo->savesong(filename);}
-            xywh {0 0 100 20} labelsize 14 divider
+            xywh {0 0 100 20} divider
           }
           MenuItem {} {
             label {Export Midi File}
@@ -176,32 +182,32 @@ filename=fl_filename_setext(filename,EXT);
 \#undef EXT
 rmgmo->saveMidiFile(filename);
 rmgmo->cas=1;}
-            xywh {0 0 100 20} labelsize 14 divider
+            xywh {0 0 100 20} divider
           }
           MenuItem {} {
             label Close
             callback {stygmseqwin->do_callback();}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
         }
         Submenu {} {
           label {&Edit} open
-          xywh {0 0 100 20} labelsize 14
+          xywh {0 0 100 20}
         } {
           MenuItem {} {
             label Copy
             callback {PreparaEdit(1);}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
           MenuItem {} {
             label Delete
             callback {PreparaEdit(2);}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
           MenuItem {} {
             label Move
             callback {PreparaEdit(3);}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
         }
         MenuItem {} {
@@ -219,23 +225,23 @@ char **argv= (char **) pepe;
 WTT->icon((char *)p);
 
 WTT->show(argc,argv);}
-          xywh {0 0 100 20} labelsize 14
+          xywh {0 0 100 20}
         }
         Submenu {} {
           label {&Help} open
-          xywh {0 0 100 20} labelsize 14
+          xywh {0 0 100 20}
         } {
           MenuItem {} {
             label Help
             callback {rmgmo->ventana=7;}
-            xywh {0 0 100 20} shortcut 0xffbe labelsize 14 divider
+            xywh {0 0 100 20} shortcut 0xffbe divider
           }
           MenuItem {} {
             label About
             callback {if(wabout) return;
 wabout=1;
 rmgmo->ventana=1;}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
         }
       }
@@ -625,8 +631,7 @@ for (int i=kd-4096; i>0; i--)
 MetePats();
 if ((BroPat->size()>0 ) && ((int)o->value()<=BroPat->size()))
 BroPat->value((int)o->value());
-}} {selected
-    }
+}} {}
   }
   Function {song_call2(Fl_Button* o, void* v)} {return_type {static void}
   } {
@@ -1171,8 +1176,8 @@ while ((t1)<=128)
     
 
 Scr->redraw();
-Fl::flush();
-Scr->position(0,0);} {}
+Fl::flush();} {selected
+    }
   }
   Function {GuardaPrefs()} {} {
     code {Fl_Preferences stygmorgan (Fl_Preferences::USER, WEBSITE, PACKAGE);

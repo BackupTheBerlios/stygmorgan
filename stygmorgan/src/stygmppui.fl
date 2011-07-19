@@ -1,18 +1,21 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0107 
+version 1.0300 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
 header_name {.h} 
 code_name {.cxx}
-decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
-
-decl {//License GNU/GPL version 2} {} 
-
-decl {\#include "stygmorgan.h"} {public
+decl {//Copyright(c) 2006 Josep Andreu (holborn)} {private local
 } 
 
-decl {\#include <Fl/Fl_Check_Button.H>} {} 
+decl {//License GNU/GPL version 2} {private local
+} 
+
+decl {\#include "stygmorgan.h"} {public local
+} 
+
+decl {\#include <Fl/Fl_Check_Button.H>} {private local
+} 
 
 class rmgmpp {} {
   Function {rmgmpp(RMGMO *rmgmo_)} {C
@@ -33,15 +36,17 @@ rmgmppwin->label(temp);
 rmgmppwin->icon((char *)p);
 rmgmppwin->show(argc,argv);} {}
   }
-  decl {RMGMO *rmgmo;} {}
-  Function {make_window()} {} {
+  decl {RMGMO *rmgmo;} {private local
+  }
+  Function {make_window()} {open
+  } {
     Fl_Window rmgmppwin {
       callback {pera=2;
 rmgmppwin->hide();
 rmgmo->wpatterneditor=0;
 rmgmppwin->clear();
-delete rmgmppwin;}
-      xywh {1504 294 830 335} type Double color 7 hide
+delete rmgmppwin;} open
+      xywh {1490 280 830 335} type Double color 31 hide
     } {
       Fl_Button {} {
         label Cancel
@@ -94,8 +99,8 @@ rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[(int)PatChoice->value()].ChType=(in
         callback {rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[(int)PatChoice->value()].RTR=(int)o->value();}
         xywh {10 255 100 25} type Simple box PLASTIC_DOWN_BOX labelsize 11 align 5 minimum 1 maximum 12 step 1 value 1
       }
-      Fl_Box {} {
-        xywh {215 20 610 245} box DOWN_BOX color 7
+      Fl_Box {} {selected
+        xywh {215 20 610 245} box DOWN_BOX color 31
       }
     }
     code {int i,j,k,l,udata;
@@ -174,8 +179,7 @@ for (j=1; j<=i; j++) lolo *=2;
 pepe = (Fl_Check_Button*) rmgmppwin->child(11+i);
 if ( (rmgmo->nStyle.Pattern[rmgmo->Variacion].casm[tr].ChM & lolo) == lolo) pepe->value(1); else pepe->value(0); 
    
-}} {selected
-    }
+}} {}
   }
   Function {calcula()} {} {
     code {int i,j;

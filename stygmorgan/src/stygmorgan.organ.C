@@ -37,7 +37,6 @@ if (nStyle.ppq == 0) return;
 
 ttick = get_tick();
 
-
 ptick = ttick - (longi * patrones) - rema;
 
 negra=(( ptick / nunegra ) % divisor) + 1;

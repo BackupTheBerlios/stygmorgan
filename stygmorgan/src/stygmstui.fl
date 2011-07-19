@@ -1,15 +1,21 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0107 
+version 1.0300 
+i18n_type 1 
+i18n_include <libintl.h> 
+i18n_function gettext 
 header_name {.h} 
 code_name {.cxx}
-decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
-
-decl {//License GNU/GPL version 2} {} 
-
-decl {\#include "stygmorgan.h"} {public
+decl {//Copyright(c) 2006 Josep Andreu (holborn)} {private local
 } 
 
-class rmgmstye {} {
+decl {//License GNU/GPL version 2} {private local
+} 
+
+decl {\#include "stygmorgan.h"} {public local
+} 
+
+class rmgmstye {open
+} {
   Function {rmgmstye(RMGMO *rmgmo_)} {open C
   } {
     code {char temp[128];
@@ -27,18 +33,19 @@ sprintf(temp, "%s - Style Parameters",rmgmo->nStyle.Name);
 rmgmstyewin->label(temp);
 
 rmgmstyewin->icon((char *)p);
-rmgmstyewin->show(argc,argv);} {selected
-    }
+rmgmstyewin->show(argc,argv);} {}
   }
-  decl {RMGMO *rmgmo;} {}
-  Function {make_window()} {} {
+  decl {RMGMO *rmgmo;} {private local
+  }
+  Function {make_window()} {open
+  } {
     Fl_Window rmgmstyewin {
       callback {pera=2;
 rmgmstyewin->hide();
 rmgmo->wstyleeditor=0;
 rmgmstyewin->clear();
-delete rmgmstyewin;}
-      xywh {1761 343 475 190} type Double color 7 hide
+delete rmgmstyewin;} selected
+      xywh {1754 336 475 190} type Double color 31 visible
     } {
       Fl_Input EName {
         label Name

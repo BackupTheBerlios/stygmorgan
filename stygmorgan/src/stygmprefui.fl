@@ -1,19 +1,23 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0107 
+version 1.0300 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
 header_name {.h} 
 code_name {.cxx}
-decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
+decl {//Copyright(c) 2006 Josep Andreu (holborn)} {private local
+} 
 
-decl {//License GNU/GPL version 2} {} 
+decl {//License GNU/GPL version 2} {private local
+} 
 
-decl {\#include <Fl/Fl_Preferences.H>} {} 
+decl {\#include <Fl/Fl_Preferences.H>} {private local
+} 
 
-decl {\#include <Fl/Fl_File_Chooser.H>} {} 
+decl {\#include <Fl/Fl_File_Chooser.H>} {private local
+} 
 
-decl {\#include "stygmorgan.h"} {public
+decl {\#include "stygmorgan.h"} {public local
 } 
 
 class rmgmpref {} {
@@ -36,14 +40,15 @@ rmgmprefwin->copy_label(temp);
 rmgmprefwin->icon((char *)p);
 rmgmprefwin->show(argc,argv);} {}
   }
-  decl {RMGMO *rmgmo;} {}
+  decl {RMGMO *rmgmo;} {private local
+  }
   Function {make_window()} {} {
     Fl_Window rmgmprefwin {
       callback {rmgmprefwin->hide();
 rmgmo->wpreferences=0;
 rmgmprefwin->clear();
-delete rmgmprefwin;} open
-      xywh {1549 112 540 505} type Double color 7 hide
+delete rmgmprefwin;} open selected
+      xywh {1542 105 540 505} type Double color 31 hide
     } {
       Fl_Button {} {
         label Cancel
@@ -133,7 +138,7 @@ strcpy(rmgmo->TempDir,filename);}
       }
       Fl_Input DTextAutoF {
         label {SysEx for Auto Fill-In button }
-        callback {strcpy(rmgmo->TextAUTOF,o->value());} selected
+        callback {strcpy(rmgmo->TextAUTOF,o->value());}
         tooltip {Input form: F0 43 10 .... F7} xywh {5 430 465 25} labelsize 10 align 5
       }
     }

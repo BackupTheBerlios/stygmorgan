@@ -165,10 +165,12 @@
         return (0);
       };
 
-   new stygmorgan(argc,argv,&rmgmo);
+   pon_realtime();
 
    mlockall(MCL_CURRENT | MCL_FUTURE);
-   pon_realtime();
+
+   new stygmorgan(argc,argv,&rmgmo);
+
 
     while (Pexitprogram == 0)
       {

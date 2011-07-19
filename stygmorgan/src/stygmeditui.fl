@@ -1,28 +1,33 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0108 
+version 1.0300 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
 header_name {.h} 
 code_name {.cxx}
-decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
-
-decl {//License GNU/GPL version 2} {} 
-
-decl {\#include "stygmorgan.h"} {public
+decl {//Copyright(c) 2006 Josep Andreu (holborn)} {private local
 } 
 
-decl {\#include "choice.h"} {} 
-
-decl {\#include <Fl/Fl_Preferences.H>} {public
+decl {//License GNU/GPL version 2} {private local
 } 
 
-decl {\#include <FL/Fl_Browser.H>} {public
+decl {\#include "stygmorgan.h"} {public local
+} 
+
+decl {\#include "choice.h"} {private local
+} 
+
+decl {\#include <Fl/Fl_Preferences.H>} {public local
+} 
+
+decl {\#include <FL/Fl_Browser.H>} {public local
 } 
 
 class ElBro {: {public Fl_Browser}
 } {
-  Function {ElBro(int X, int Y, int W, int H) : Fl_Browser(X,Y,W,H)} {} {}
+  Function {ElBro(int X, int Y, int W, int H) : Fl_Browser(X,Y,W,H)} {} {
+    code {} {}
+  }
   Function {resize(int X, int Y,int W, int H)} {} {
     code {int i;
 int sizes[512];
@@ -116,7 +121,8 @@ rmgmeditwin->resize(x1,y1,w1,h1);
 
 ReadPattern();} {}
   }
-  decl {RMGMO *rmgmo;} {}
+  decl {RMGMO *rmgmo;} {private local
+  }
   Function {make_window()} {} {
     Fl_Window rmgmeditwin {
       callback {pera=2;
@@ -124,8 +130,8 @@ GuardaPrefs();
 o->hide();
 rmgmo->weventeditor=0;
 o->clear();
-delete rmgmeditwin;} open
-      xywh {464 210 750 535} type Double color 7 labelsize 11 hide resizable size_range {800 600 0 0}
+delete rmgmeditwin;}
+      xywh {1447 204 750 535} type Double color 31 labelsize 11 hide resizable size_range {800 600 0 0}
     } {
       Fl_Browser EditBro {
         callback {int i,j,k;
@@ -157,7 +163,7 @@ if (sAllE->value())
       if ((rmgmo->PEG[rmgmo->Variacion][k].tipo == rmgmo->PEG[rmgmo->Variacion][i].tipo) && (rmgmo->PEG[rmgmo->Variacion][k].nota == rmgmo->PEG[rmgmo->Variacion][i].nota)
       && (rmgmo->PEG[rmgmo->Variacion][k].canal == rmgmo->PEG[rmgmo->Variacion][i].canal)) o->select(j,1);
     }
- }} selected
+ }}
         tooltip {Left Click Select - Rigth Click Edit} xywh {5 130 745 405} type Multi
       }
       Fl_Group {} {
@@ -190,25 +196,25 @@ if (sAllE->value())
       } {
         Submenu sFunctions {
           label {&Functions}
-          xywh {0 0 100 20} labelsize 14
+          xywh {0 0 100 20}
         } {
           MenuItem {} {
             label {Brush Drums XG->GM}
             callback {rmgmo->XGGM();
 ReadPattern();}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
         }
         Submenu {} {
           label {&Help} open
-          xywh {0 0 100 20} labelsize 14
+          xywh {0 0 100 20}
         } {
           MenuItem {} {
             label Help
             callback {rmgmo->ventana=7;
 //EditBro->redraw();
 ReadPattern();}
-            xywh {0 0 100 20} shortcut 0xffbe labelsize 14 divider
+            xywh {0 0 100 20} shortcut 0xffbe divider
           }
           MenuItem {} {
             label About
@@ -217,7 +223,7 @@ wabout=1;
 rmgmo->ventana=1;
 //EditBro->redraw();
 ReadPattern();}
-            xywh {0 0 100 20} labelsize 14
+            xywh {0 0 100 20}
           }
         }
       }
@@ -535,8 +541,8 @@ ReadPattern();} {}
   Function {make_eventwindow()} {} {
     Fl_Window Eventwin {
       callback {Eventwin->hide();
-//EditBro->redraw();}
-      xywh {1671 292 340 290} type Double color 7 hide
+//EditBro->redraw();} selected
+      xywh {1664 285 340 290} type Double color 31 hide
     } {
       Fl_Button {} {
         label Ok

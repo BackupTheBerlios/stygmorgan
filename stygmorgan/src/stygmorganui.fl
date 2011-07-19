@@ -1,36 +1,40 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0110 
+version 1.0300 
 i18n_type 1 
 i18n_include <libintl.h> 
 i18n_function gettext 
 header_name {.h} 
 code_name {.cxx}
-decl {//Copyright(c) 2006 Josep Andreu (holborn)} {} 
-
-decl {//License GNU/GPL version 2} {} 
-
-decl {\#include <FL/x.H>} {public
+decl {//Copyright(c) 2006 Josep Andreu (holborn)} {private local
 } 
 
-decl {\#include <X11/xpm.h>} {public
+decl {//License GNU/GPL version 2} {private local
 } 
 
-decl {\#include <stygmicon128.xpm>} {} 
-
-decl {\#include <FL/Fl_File_Chooser.H>} {public
+decl {\#include <FL/x.H>} {public local
 } 
 
-decl {\#include "stygmorgan.h"} {public
+decl {\#include <X11/xpm.h>} {public local
+} 
+
+decl {\#include <stygmicon128.xpm>} {private local
+} 
+
+decl {\#include <FL/Fl_File_Chooser.H>} {public local
+} 
+
+decl {\#include "stygmorgan.h"} {public local
 } 
 
 class stygmorgan {} {
-  decl {RMGMO *rmgmo;} {}
+  decl {RMGMO *rmgmo;} {private local
+  }
   Function {make_window()} {} {
     Fl_Window rmgmorganwin {
       callback {GuardaPref();
 Pexitprogram=1;
-o->hide();} selected
-      xywh {193 102 1010 780} type Double color 39 resizable size_range {800 600 0 0} visible
+o->hide();}
+      xywh {1342 82 1010 780} type Double color 31 hide resizable size_range {800 600 0 0}
     } {
       Fl_Group {} {
         xywh {5 325 70 450} box BORDER_BOX color 50 selection_color 7 labelfont 1 align 81
@@ -1538,7 +1542,7 @@ labelwin(4);
           xywh {445 70 140 205} type Hold box PLASTIC_THIN_DOWN_BOX labelsize 11 align 1
         }
       }
-      Fl_Group Botones {open
+      Fl_Group Botones {
         xywh {355 325 165 450} color 7
       } {
         Fl_Group {} {
@@ -1784,7 +1788,7 @@ P15->lstep(10);} {}
   }
   Function {stygmorgan(int argc, char **argv,RMGMO *rmgmo_)} {C
   } {
-    code {Fl::scheme("plastic");
+    code {Fl::scheme("gtk+");
 fl_open_display();
 
 XpmCreatePixmapFromData(fl_display, DefaultRootWindow(fl_display),(char **)stygmicon128,&p ,&mask, NULL);
@@ -1875,7 +1879,7 @@ Fl::repeat_timeout(1.0/500.0,tick,v);} {}
 Actua_More();
 rmgmo->wmore=0;
 delete More;}
-      xywh {1563 125 100 255} type Double color 7 hide
+      xywh {1556 118 100 255} type Double color 31 hide
     } {
       Fl_Counter Octave {
         label Octave
@@ -2449,8 +2453,8 @@ Vol4->value(rmgmo->CM[4].vol);} {}
 CMixer->hide();
 rmgmo->wmixereditor=0;
 CMixer->clear();
-delete CMixer;}
-      xywh {1581 220 310 400} type Double color 7 hide
+delete CMixer;} selected
+      xywh {1574 213 310 400} type Double color 31 hide
     } {
       Fl_Button {} {
         label Ok

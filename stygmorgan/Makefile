@@ -82,7 +82,7 @@ CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -O2 -Wall  -I/usr/include/freetype2 -g -O2 -D_THREAD_SAFE -D_REENTRANT
+CXXFLAGS = -O2 -Wall   -pthread -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libpng12   -I/usr/include/freetype2 -pthread -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libpng12    -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_THREAD_SAFE -D_REENTRANT
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -100,7 +100,7 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lXpm -lfreetype -lfontconfig -lfltk -ldl -lasound -lXrender -lXft -lfltk_images -lfltk -lasound -lXpm
+LIBS = -lXpm -lfreetype -lfontconfig -lfltk -ldl -lasound -lXrender -lXft -L/usr/lib/i386-linux-gnu -lfltk_images -lfltk -lasound -lXpm
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/holborn/cvs-stygmorgan/stygmorgan/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
