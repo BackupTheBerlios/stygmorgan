@@ -62,6 +62,10 @@ RMGMO::midievents ()
       int cmdnote = midievent->data.note.note;
       int cmdvelo = midievent->data.note.velocity;
 
+     if (midievent->type == SND_SEQ_EVENT_NOTEOFF)
+      cmdvelo=0;
+
+
       if (cmdvelo != vum )
          { 
            vum=cmdvelo;
@@ -145,6 +149,7 @@ RMGMO::midievents ()
       midievent->data.note.channel=2;
       midievent->data.note.note=cmdnote+(12*CM[2].octave)+CM[2].transpose+transpose;
       midievent->data.note.velocity=cmdvelo;
+
       snd_seq_event_output_direct (midi_out, midievent);
 
       }
@@ -153,6 +158,7 @@ RMGMO::midievents ()
       midievent->data.note.channel=3;
       midievent->data.note.note=cmdnote+(12*CM[3].octave)+CM[3].transpose+transpose;
       midievent->data.note.velocity=cmdvelo;
+
       snd_seq_event_output_direct (midi_out, midievent);
       }
       if (CM[4].OnOff)
@@ -160,6 +166,7 @@ RMGMO::midievents ()
       midievent->data.note.channel=4;
       midievent->data.note.note=cmdnote+(12*CM[4].octave)+CM[4].transpose+transpose;
       midievent->data.note.velocity=cmdvelo;
+      
       snd_seq_event_output_direct (midi_out, midievent);
       }
 
