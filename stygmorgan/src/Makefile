@@ -89,7 +89,7 @@ CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -O2 -Wall   -pthread -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libpng12   -I/usr/include/freetype2 -pthread -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libpng12    -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_THREAD_SAFE -D_REENTRANT
+CXXFLAGS = -O2 -Wall   -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12   -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12    -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_THREAD_SAFE -D_REENTRANT
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -115,15 +115,15 @@ OBJEXT = o
 PACKAGE = stygmorgan
 PACKAGE_BUGREPORT = holborn@telefonica.net
 PACKAGE_NAME = stygmorgan
-PACKAGE_STRING = stygmorgan 0.29
+PACKAGE_STRING = stygmorgan 0.29.1
 PACKAGE_TARNAME = stygmorgan
 PACKAGE_URL = 
-PACKAGE_VERSION = 0.29
+PACKAGE_VERSION = 0.29.1
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = 
-VERSION = 0.29
+VERSION = 0.29.1
 abs_builddir = /home/holborn/cvs-stygmorgan/stygmorgan/src
 abs_srcdir = /home/holborn/cvs-stygmorgan/stygmorgan/src
 abs_top_builddir = /home/holborn/cvs-stygmorgan/stygmorgan
@@ -196,6 +196,9 @@ stygmorgan_SOURCES = main.C \
 	stygmorgan.fileio.C \
 	stygmorgan.misc.C \
 	stygmorgan.graphfunc.C \
+	speaker2.xpm \
+	stygmicon128.xpm \
+	choice.h \
 	stygmorgan.h
 
 all: config.h

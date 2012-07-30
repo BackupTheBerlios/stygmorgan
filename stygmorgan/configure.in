@@ -1,7 +1,7 @@
-AC_INIT([stygmorgan],[0.29],[holborn@telefonica.net])
+AC_INIT([stygmorgan],[0.29.1],[holborn@telefonica.net])
 AC_CONFIG_SRCDIR([src/main.C])
 AC_CONFIG_HEADER([src/config.h])
-AM_INIT_AUTOMAKE(stygmorgan, 0.29)
+AM_INIT_AUTOMAKE(stygmorgan, 0.29.1)
 
 AC_PROG_CXX
 AC_PROG_CC

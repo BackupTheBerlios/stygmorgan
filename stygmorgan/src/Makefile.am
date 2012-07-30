@@ -28,6 +28,9 @@ stygmorgan_SOURCES = main.C \
 	stygmorgan.fileio.C \
 	stygmorgan.misc.C \
 	stygmorgan.graphfunc.C \
+	speaker2.xpm \
+	stygmicon128.xpm \
+	choice.h \
 	stygmorgan.h
 
 
